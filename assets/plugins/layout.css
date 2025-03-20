@@ -1,0 +1,308 @@
+@charset "utf-8";
+/*
+Template Name: Essential
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+File: Layout CSS
+*/
+
+@import url("fontawesome-4.2.0.min.css");
+@import url("framework.css");
+
+
+/* Rows
+--------------------------------------------------------------------------------------------------------------- */
+.row0{border-bottom:1px solid;}
+.row1, .row1 a{
+    width: 100%;
+}
+.row2, .row2 a{}
+.row3, .row3 a{}
+.row4, .row4 a{}
+.row5, .row5 a{}
+.row6, .row6 a{}
+
+
+/* Top Bar
+--------------------------------------------------------------------------------------------------------------- */
+#topbar{padding:15px 0;}
+
+#topbar ul{margin-top:5px;}
+#topbar li{display:inline; margin-right:3px; padding-right:8px; border-right:1px solid; font-size:.85em;}
+#topbar li:last-child{margin-right:0; padding-right:0; border:none;}
+
+#topbar input, #topbar button{display:inline-block; float:left; height:30px; border:none;}
+#topbar input{max-width:180px; padding:5px;}
+#topbar button{width:35px; font-size:16px; cursor:pointer;}
+#topbar button em{display:none;}
+
+/* Header
+--------------------------------------------------------------------------------------------------------------- */
+#header{padding:30px 0;}
+
+#header #logo{margin-top:2px;}
+#header #logo h1{margin:0; padding:0; font-size:32px; font-variant:small-caps;}
+
+
+/* Intro
+--------------------------------------------------------------------------------------------------------------- */
+#intro{padding:150px 0; text-align:center;}
+
+#intro .font-x2{margin-bottom:30px; font-size:2em;}
+#intro .font-x3{margin-bottom:50px; font-size:3em; text-transform:uppercase;}
+
+#intro li{display:inline-block; margin-right:30px; text-transform:uppercase; font-size:18px;}
+#intro li a{display:block; padding:10px 30px 12px; transition:all .5s ease-in-out;}
+
+
+/* Content Area
+--------------------------------------------------------------------------------------------------------------- */
+#container{padding:80px 0;}
+
+/* Content */
+#container #content{}
+
+.boxedicon{display:inline-block; position:relative; width:120px; height:80px; line-height:80px; margin-bottom:30px; text-align:center;}
+.boxedicon a{display:block; width:100%; height:100%; border:1px solid; transition:all .5s ease-in-out;}
+.boxedicon a i{line-height:inherit;}
+.boxedicon::after{position:absolute; bottom:-13px; left:50%; width:20px; height:13px; margin-left:-10px; font-size:32px; line-height:14px; font-family:"FontAwesome"; content:"\f0d7";}
+
+/* Comments */
+#comments ul{margin:0 0 40px 0; padding:0; list-style:none;}
+#comments li{margin:0 0 10px 0; padding:15px;}
+#comments .avatar{float:right; margin:0 0 10px 10px; padding:3px; border:1px solid;}
+#comments address{font-weight:bold;}
+#comments time{font-size:smaller;}
+#comments .comcont{display:block; margin:0; padding:0;}
+#comments .comcont p{margin:10px 5px 10px 0; padding:0;}
+
+#comments form{display:block; width:100%;}
+#comments input, #comments textarea{width:100%; padding:10px; border:1px solid;}
+#comments textarea{overflow:auto;}
+#comments div{margin-bottom:15px;}
+#comments input[type="submit"], #comments input[type="reset"]{display:inline-block; width:auto; min-width:150px; margin:0; padding:8px 5px; cursor:pointer;}
+
+/* Sidebar */
+#container .sidebar{}
+
+.sidebar .sdb_holder{margin-bottom:50px;}
+.sidebar .sdb_holder:last-child{margin-bottom:0;}
+
+
+/* Footer
+--------------------------------------------------------------------------------------------------------------- */
+#footer{padding:50px 0;}
+#footer .title{margin:0 0 30px 0; padding:0 0 8px 0; border-bottom:1px solid; font-size:16px; text-transform:uppercase;}
+
+#footer .linklist li{margin-bottom:10px;}
+#footer .linklist li:last-child{margin-bottom:0;}
+
+#footer .smallfont{font-size:.8em; margin:0;}
+
+#footer label{}
+#footer input{display:block; width:100%; padding:8px; border:none;}
+#footer button{padding:6px 12px 8px; font-weight:bold; text-transform:uppercase; border:none; cursor:pointer;}
+
+
+/* Social
+--------------------------------------------------------------------------------------------------------------- */
+#social{padding:50px 0;}
+
+
+/* Copyright
+--------------------------------------------------------------------------------------------------------------- */
+#copyright{padding:30px 0;}
+#copyright p{margin:0; padding:0;}
+
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+
+/* Navigation
+--------------------------------------------------------------------------------------------------------------- */
+nav ul, nav ol{margin:0; padding:0; list-style:none;}
+
+#mainav .drop::after, #mainav li li .drop::after, #breadcrumb li a::after, .sidebar nav a::after{position:absolute; font-family:"FontAwesome"; font-size:10px; line-height:10px;}
+
+/* Top Navigation */
+#mainav{}
+#mainav ul{}
+#mainav ul ul{z-index:9999; position:absolute; width:250px;}
+#mainav ul ul ul{left:250px; top:0;}
+#mainav li{display:inline-block; position:relative; margin:0 30px 0 0; padding:0;}
+#mainav li:last-child{margin-right:0;}
+#mainav li li{width:100%; margin:0;}
+#mainav li a{display:block; padding:10px 0;}
+#mainav li li a{border:solid; border-width:0 0 1px 0;}
+#mainav .drop{padding-left:15px;}
+#mainav li li a, #mainav li li .drop{display:block; margin:0; padding:10px 15px;}
+#mainav .drop::after, #mainav li li .drop::after{content:"\f0d7";}
+#mainav .drop::after{top:15px; left:5px;}
+#mainav li li .drop::after{top:15px; left:5px;}
+#mainav ul ul{display:none;}
+#mainav ul li:hover > ul{display:block;}
+
+/* Breadcrumb */
+#breadcrumb{padding:30px 0;}
+#breadcrumb ul{margin:0; padding:0; list-style:none;}
+#breadcrumb li{display:inline-block; margin:0 6px 0 0; padding:0;}
+#breadcrumb li a{display:block; position:relative; margin:0; padding:0 12px 0 0; font-size:12px;}
+#breadcrumb li a::after{top:5px; right:0; content:"\f101";}
+#breadcrumb li:last-child a{margin:0; padding:0;}
+#breadcrumb li:last-child a::after{display:none;}
+
+/* Sidebar Navigation */
+.sidebar nav{display:block; width:100%;}
+.sidebar nav li{margin:0 0 3px 0; padding:0;}
+.sidebar nav a{display:block; position:relative; margin:0; padding:5px 10px 5px 15px; text-decoration:none; border:solid; border-width:0 0 1px 0;}
+.sidebar nav a::after{top:9px; left:5px; content:"\f101";}
+.sidebar nav ul ul a{padding-left:35px;}
+.sidebar nav ul ul a::after{left:25px;}
+.sidebar nav ul ul ul a{padding-left:55px;}
+.sidebar nav ul ul ul a::after{left:45px;}
+
+/* Pagination */
+.pagination{display:block; width:100%; text-align:center; clear:both;}
+.pagination li{display:inline-block; margin:0 2px 0 0;}
+.pagination li:last-child{margin-right:0;}
+.pagination a, .pagination strong{display:block; padding:8px 11px; border:1px solid; font-weight:normal;}
+
+
+/* Tables
+--------------------------------------------------------------------------------------------------------------- */
+table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top; box-sizing:border-box;}
+table, th{table-layout:auto;}
+table{width:100%; margin-bottom:15px;}
+th, td{padding:5px 8px;}
+td{border-width:0 1px;}
+
+
+/* Gallery
+--------------------------------------------------------------------------------------------------------------- */
+#gallery{display:block; width:100%; margin-bottom:50px;}
+#gallery figure figcaption{display:block; width:100%; clear:both;}
+#gallery li{margin-bottom:30px;}
+
+
+/* Font Awesome Social Icons
+--------------------------------------------------------------------------------------------------------------- */
+.faico{margin:0; padding:0; list-style:none;}
+.faico li{display:inline-block; margin:0 18px 0 0; padding:0; line-height:normal;}
+.faico li:last-child{margin-right:0;}
+
+.faico a{display:inline-block; width:60px; height:60px; line-height:60px; font-size:30px; text-align:center; transition:all .5s ease-in-out;}
+
+.faico a{color:#000000; background-color:#272727;}
+.faico a:hover{color:#FFFFFF;}
+
+.faicon-dribble:hover{background-color:#EA4C89;}
+.faicon-dropbox:hover{background-color:#3D9AE8;}
+.faicon-facebook:hover{background-color:#3B5998;}
+.faicon-flickr:hover{background-color:#FF0084;}
+.faicon-google-plus:hover{background-color:#DB4A39;}
+.faicon-instagram:hover{background-color:#3F729B;}
+.faicon-linkedin:hover{background-color:#0E76A8;}
+.faicon-pinterest:hover{background-color:#C8232C;}
+.faicon-rss:hover{background-color:#EE802F;}
+.faicon-tumblr:hover{background-color:#34526F;}
+.faicon-twitter:hover{background-color:#00ACEE;}
+.faicon-youtube:hover{background-color:#C4302B;}
+
+
+/* Add Rounded Corners - Delete or comment out if not wanted
+--------------------------------------------------------------------------------------------------------------- */
+input, button, textarea, .borderedbox, .avatar, 
+#comments li, #intro li a, .boxedicon a, .faico a, 
+.pagination a, .pagination strong{border-radius:8px; background-clip:padding-box;}
+
+#topbar input{border-radius:8px 0 0 8px;}
+#topbar button{border-radius:0 8px 8px 0;}
+
+#mainav li li:last-child a{border-radius:0 0 8px 8px;}
+#mainav li li:first-child a{border-radius:8px 8px 0 0;}
+
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+
+/* Colours
+--------------------------------------------------------------------------------------------------------------- */
+body{color:#888888; background-color:#272727;}
+
+a{color:#C66666;}
+
+hr, .borderedbox{border-color:#D7D7D7;}
+
+label span{color:#FF0000; background-color:inherit;}
+
+.overlay{background-color:rgba(0,0,0,0);}
+.overlay:hover{background-color:rgba(0,0,0,.4);}
+
+
+/* Rows */
+.row0, .row0 a{color:#888888; background-color:#272727;}
+.row0{border-color:#C66666;}
+.row1, .row1 a{color:#888888; background-color:#FFFFFF;}
+.row2{color:#FFFFFF; background-color:#888888;}
+.row3{color:#888888; background-color:#FFFFFF;}
+.row4{color:#888888; background-color:#272727;}
+.row5{color:#888888; background-color:#000000;}
+.row6, .row6 a{color:#888888; background-color:#272727;}
+
+
+/* Top Bar */
+#topbar li{border-color:#888888;}
+#topbar li a:hover{color:#C66666;}
+#topbar input{color:#FFFFFF; background-color:#000000;}
+#topbar button{color:#FFFFFF; background-color:#C66666;}
+
+
+/* Intro */
+#intro li a{box-shadow:0 2px 0 0 rgba(198,102,102,.5); text-shadow:0 -1px 1px rgba(0,0,0,.3);}
+#intro li:nth-child(odd) a, #intro li:nth-child(even):hover a{color:#FFFFFF; background-color:#C66666;}
+#intro li:nth-child(even) a, #intro li:nth-child(odd):hover a{color:#C66666; background-color:#FFFFFF;}
+
+
+/* Content */
+.boxedicon a, .boxedicon::after{color:#C66666; border-color:#C66666;}
+.boxedicon a:hover{color:#FFFFFF; background-color:#C66666;}
+
+
+/* Footer */
+#footer .title{color:#FFFFFF; border-color:#000000;}
+#footer input{color:#FFFFFF; background-color:#000000;}
+#footer button{color:#FFFFFF; background-color:#C66666; text-shadow:0 -1px 1px rgba(0,0,0,.5);}
+
+
+/* Navigation */
+#mainav li a{color:inherit;}
+#mainav .active a, #mainav a:hover, #mainav li:hover > a{color:#C66666; background-color:inherit;}
+#mainav li li a, #mainav .active li a{color:#FFFFFF; background-color:rgba(0,0,0,.6); border-color:rgba(0,0,0,.6);}
+#mainav li li:hover > a, #mainav .active .active > a{color:#FFFFFF; background-color:#C66666;}
+
+#breadcrumb a{color:#888888; background-color:inherit;}
+#breadcrumb li:last-child a{color:#C66666;}
+
+#container .sidebar nav a{color:inherit; border-color:#D7D7D7;}
+#container .sidebar nav a:hover{color:#C66666;}
+
+.pagination a, .pagination strong{border-color:#D7D7D7;}
+.pagination .current *{color:#FFFFFF; background-color:#000000;}
+
+
+/* Tables + Comments */
+table, th, td, #comments .avatar, #comments input, #comments textarea{border-color:#D7D7D7;}
+th{color:#FFFFFF; background-color:#373737;}
+tr, #comments li, #comments input[type="submit"], #comments input[type="reset"]{color:inherit; background-color:#FBFBFB;}
+tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
+table a, #comments a{background-color:inherit;}
