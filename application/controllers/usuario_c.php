@@ -40,8 +40,8 @@ class usuario_c extends Main_Controller
 	
 	public function Add(){
 		$param['rol'] = $this->input->post('rol_usuario_add');		
-		$param['nombre_usuario'] =$this->input->post('nombre_usuario_add');
-		$param['usuario'] = $this->input->post('usuario_add');		
+		$param['nombre_usuario'] =trim($this->input->post('nombre_usuario_add'));
+		$param['usuario'] = trim($this->input->post('usuario_add'));		
 		$param['creado_por'] = $this->session->userdata('id_usuario');	
 		$param['contrasenna'] =md5($this->input->post('password_add'));			
 		$password_confirmar = md5($this->input->post('password_confirmar_add'));		
@@ -65,8 +65,8 @@ class usuario_c extends Main_Controller
 
 	public function Upd(){
 		$param['id_usuario'] = $this->input->post('id_usuario');		
-		$param['usuario'] =$this->input->post('usuario_upd');
-		$param['nombre_usuario'] =$this->input->post('nombre_usuario_upd');		
+		$param['usuario'] =trim($this->input->post('usuario_upd'));
+		$param['nombre_usuario'] =trim($this->input->post('nombre_usuario_upd'));		
 		$param['rol'] = $this->input->post('rol_usuario_upd');		
 		
 		

@@ -33,9 +33,9 @@ class edades_c extends Main_Controller
 	}
 	
 	public function Add(){
-		$param['Rango_edad'] = $this->input->post('rango_add');		
-		$param['Descripcion_ge'] = $this->input->post('descripcion_add');		
-		$param['Table_ESPECIALIDAD_id_especialidad'] =$this->input->post('especialidad_add');
+		$param['Rango_edad'] = trim($this->input->post('rango_add'));		
+		$param['Descripcion_ge'] = trim($this->input->post('descripcion_add'));		
+		#$param['Table_ESPECIALIDAD_id_especialidad'] =$this->input->post('especialidad_add');
 			
 		$result = $this->edades_m->Add($param);
 		($result) ? $this->mensaje('success', 'Datos agregados con éxito'):$this->mensaje('error', 'Error, no se pudo agregar los datos');
@@ -44,9 +44,9 @@ class edades_c extends Main_Controller
 
 	public function Upd(){
 		$param['id_grupo_edad'] = $this->input->post('id_horario');		
-		$param['Table_ESPECIALIDAD_id_especialidad'] =$this->input->post('especialidad_upd');
-		$param['Rango_edad'] =$this->input->post('rango_upd');		
-		$param['Descripcion_ge'] = $this->input->post('descripcion_upd');		
+		#$param['Table_ESPECIALIDAD_id_especialidad'] =$this->input->post('especialidad_upd');
+		$param['Rango_edad'] =trim($this->input->post('rango_upd'));		
+		$param['Descripcion_ge'] = trim($this->input->post('descripcion_upd'));		
 		
 			$result = $this->edades_m->Upd($param);
 			if($result)

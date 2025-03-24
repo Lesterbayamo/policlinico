@@ -29,7 +29,9 @@ class trabajo_m extends Main_Model
     {	
 		$data['tabla']=$this->tabla_name;	
 		$data['campo']="Nombre_gt";	
-		$data['id']=$param['Nombre_gt'];	
+		$data['id']=$param['Nombre_gt'];			
+		$data['clave_campo']=$this->tabla_id;
+		$data['clave_valor']=$param[$this->tabla_id];
 		if(!$this->isRelacionado($data)) {
 		$this->db->where($this->tabla_id, $param[$this->tabla_id]);
 		$this->db->update($this->tabla_name, $param);			

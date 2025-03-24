@@ -14,7 +14,7 @@ $(document).ready(function() {
                title: "Listado de los grupos de edades  por especialidades",
                "idText": "excel",
                exportOptions: {
-                 columns: [0,1,2]
+                 columns: [0,1]
                }
              }, {
                "extend": "pdfHtml5",
@@ -25,7 +25,7 @@ $(document).ready(function() {
                "idText": "pdf",
                pageSize: 'LETTER',
                exportOptions: {
-                  columns: [0,1,2]
+                  columns: [0,1]
                }
              }, {
                extend: "print",
@@ -34,7 +34,7 @@ $(document).ready(function() {
                "className": "btn btn-dark",
                title: "Listado de los grupos de edades  por especialidades",           
                exportOptions: {
-                  columns: [0,1,2]
+                  columns: [0,1]
                }
              },
              {
@@ -44,7 +44,7 @@ $(document).ready(function() {
                "className": "btn btn-dark",
                title: "Listado de los grupos de edades  por especialidades",           
                exportOptions: {
-                  columns: [0,1,2]
+                  columns: [0,1]
                }
              },
              {
@@ -54,7 +54,7 @@ $(document).ready(function() {
                "className": "btn btn-dark",
                title: "Listado de los grupos de edades  por especialidades",           
                exportOptions: {
-                  columns: [0,1,2]
+                  columns: [0,1]
                }
              },
              {
@@ -77,21 +77,28 @@ $(document).ready(function() {
         "columns":
         [        
           {data: 'Rango_edad', 'orderable': true, 'searchable': true},         
-          {data: 'Nombre_esp', 'orderable': true, 'searchable': true},         
-          {data: 'Siglas_esp', 'orderable': true, 'searchable': true},         
+          //{data: 'Nombre_esp', 'orderable': true, 'searchable': true},         
+          //{data: 'Siglas_esp', 'orderable': true, 'searchable': true},         
           {data: 'Descripcion_ge', 'orderable': false, 'searchable': true},         
                 
-           
+          {
+            "orderable": false,
+            
+            render: function(data, type, row)                                                                                                                                                                                                                                      
+            {             
+              return `<a href="Relacionar-grupo-de-edad-con-especialidad/${row.id_grupo_edad}" class="btn btn-block btn-info btn-xs" style="width: 45px"; data-toggle="" data-target="#" title="Relacionar el grupo de edad con especialidad." ><i class="fa fa-plus"></i></a>`;  
+            }
+          },    
           {
             "orderable": false,
             
             render: function(data, type, row)                                                                                                                                                                                                                                      
             {
               if(nivel_acceso=="Administrador"){ 
-              return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.id_grupo_edad+'\',\''+row.Rango_edad+'\',\''+row.Descripcion_ge+'\',\''+row.id_especialidad+'\');"><i class="fa fa-edit"></i></a>';  
+              return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.id_grupo_edad+'\',\''+row.Rango_edad+'\',\''+row.Descripcion_ge+'\');"><i class="fa fa-edit"></i></a>';  
               }
               else{
-                return '<a href="#" class="btn disabled btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" title="Eliminar"><i class="fa fa-edit"></i></a>';
+                return '<a href="#" class="btn disabled btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" title="Editar"><i class="fa fa-edit"></i></a>';
               }
             }
           },  
@@ -108,7 +115,7 @@ $(document).ready(function() {
             }
           }   
         ],
-        "order": [[1, "asc"],[0, "asc"]],  
+        "order": [[0, "asc"]],  
     });
     $('[title ="Exportar a Excel"]').tooltip();
     $('[title ="Exportar a Pdf"]').tooltip();
@@ -122,24 +129,13 @@ $(document).ready(function() {
     
     
     //Con esta funcion pasamos los parámetros a los text del modal.
-    Seleccionar = function(horario,rango,descripcion,especialidad)
+    Seleccionar = function(horario,rango,descripcion)
     {      
       $('#id_horario').val(horario);       
       $('#rango_upd').val(rango); 
       $('#descripcion_upd').val(descripcion); 
-                  
-      
-      //Listar en el combo Especialidades
-      $.post(baseurl + "especialidad_c/List",
-        function (data) {
-        var c = JSON.parse(data);    
-        $('#especialidad_upd').empty(); 
-        $.each(c, function (i, item) {
-          var selected =(especialidad == item.id_especialidad)?"selected":"";  
-       $('#especialidad_upd').append(`<option ${selected} value="${item.id_especialidad}"> ${item.Nombre_esp}</option>`);          
-    
-    });
-      }); 
+              
+           
     };
     
     EliminarRegistro = function(id)

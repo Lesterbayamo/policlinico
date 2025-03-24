@@ -12,10 +12,15 @@ class labor_c extends Main_Controller
 		$this->data_general['_redirect']='Labor_Medico';
 	}
    
-	public function inicio_950124()		
+	public function inicio_950124($txt)		
 	{  
+		$param['vista']=$txt;
 		if($this->ControlAcceso()){
-			$this->Cargar_Plantilla('Estructura/vlabor');		
+			if($txt=='1')
+			{$this->Cargar_Plantilla('Estructura/vlabor_mf',$param);}		
+		elseif($txt=='2')
+		{$this->Cargar_Plantilla('Estructura/vlabor_me',$param);}		
+			else{$this->Cargar_Plantilla('Estructura/vlabor',$param);}		
 		} else{
 			if($this->ControlConexion()){
 				$this->No_Tiene_Permiso();
@@ -36,11 +41,12 @@ class labor_c extends Main_Controller
 	}
 	public function List()
 	{	
-		echo json_encode($this->labor_m->List());
+		$vista = $this->input->get('num');
+		echo json_encode($this->labor_m->List($vista));
 	}
 	
 	
-	public function Add(){
+	public function Add(){				
 		$param['Table_CONSULTORIO_MEDICO_id_consultorio_medico'] = $this->input->post('consultorio_add');		
 		$param['Table_MEDICO_ci_medico'] = $this->input->post('medico_add');		
 		$param['Fecha_consulta'] = $this->input->post('fecha_add');		
@@ -69,7 +75,8 @@ class labor_c extends Main_Controller
 		}
 		
 		($result) ? $this->mensaje('success', 'Datos agregados con éxito'):$this->mensaje('error', 'Error, no se pudo agregar los datos');
-		$this->Redirect();	
+		$vista = $this->input->post('vista');
+		redirect(base_url().'Labor_Medico/'.$vista);	
 	}
 
 	public function Upd(){
@@ -108,7 +115,8 @@ class labor_c extends Main_Controller
 				$this->mensaje('error', 'Error, no se pudo modificar los datos.');
 			}			
 				
-		$this->Redirect();
+			$vista = $this->input->post('vista');
+			redirect(base_url().'Labor_Medico/'.$vista);	
 	}
 
 	public function Delete(){
@@ -116,7 +124,8 @@ class labor_c extends Main_Controller
 		$result = $this->labor_m->Delete($id);
 
 		($result) ? $this->mensaje('success', 'Datos eliminados con éxito') : $this->mensaje('error', 'Error, no se pudo eliminar los datos');
-		$this->Redirect();
+		$vista = $this->input->post('vista');
+		redirect(base_url().'Labor_Medico/'.$vista);	
 	}
              
 	

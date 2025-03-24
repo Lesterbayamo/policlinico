@@ -54,7 +54,50 @@ class medico_m extends Main_Model
 		return $this->makeData($mes_anno,$s->result());
 		
 	}
-	
+	public function List_Labor($mes_anno,$vista)
+	{
+		//Retorna todos los registros en caso que no se le pase un id especifico
+		$this->db->select('*,concat(Nombre_medico," ",Apellido_medico) as medico');
+		$this->db->from($this->tabla_name);
+		if($vista=="2"){
+			$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad');
+		}elseif($vista=="1"){
+			$this->db->where('table_medico.Table_ESPECIALIDAD_id_especialidad',0);
+		}else {
+			$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad','LEFT');
+		}	
+		$this->db->order_by('Apellido_medico');
+		$s = $this->db->get();		
+		$result = $s->result();
+
+		$h = array();	   
+		
+		$this->load->model('pronostico_m');
+	   foreach ($result  as $key => $u) {	
+		if($vista!="1")		 
+		{$h1['Nombre_esp'] = ($u->Nombre_esp)?" - ".$u->Nombre_esp:"";}	
+		else 
+		{$h1['Nombre_esp'] = "";}	 
+		$h1['medico'] = $u->medico;	 		 
+		$h1['ci_medico'] = $u->ci_medico;
+		/* $pronostico = $this->pronostico_m->List($u->ci_medico,$mes_anno);
+		$h_pronostico = array();
+		foreach ($pronostico as $key => $val) {
+			#	# code...
+			$tipo = ($val->tipo == "Policlinico")? "Policlínico":"Terreno";
+			  array_push($h_pronostico,$tipo." : ".$val->cantidad);
+			} */
+			
+			#$h1['edades'] = implode(',',$h_pronostico);	 
+			#$h1['Pronostico'] = implode(', ',$h_pronostico);	 
+		
+		$obj = (object) $h1;
+		#if(count($h_pronostico))
+		array_push($h, $obj);
+	   }
+	   return $h;
+		
+	}
 	
 	
 	

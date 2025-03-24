@@ -18,16 +18,16 @@ class trabajo_c extends Main_Controller
 	public function List()
 	{	echo json_encode($this->trabajo_m->List());	}	
 	public function Add(){
-		$param['Nombre_gt'] = $this->input->post('nombre_add');		
-		$param['Descripcion_gt'] = $this->input->post('descripcion_add');				
+		$param['Nombre_gt'] =trim($this->input->post('nombre_add'));		
+		$param['Descripcion_gt'] =trim($this->input->post('descripcion_add'));				
 		$result = $this->trabajo_m->Add($param);
 		($result) ? $this->mensaje('success', 'Datos agregados con éxito'):$this->mensaje('error', 'Error, no se pudo agregar los datos');
 		$this->Redirect();	
 	}
 	public function Upd(){
 		$param['id_grupo_trabajo'] = $this->input->post('id_trabajo');			
-		$param['Nombre_gt'] =$this->input->post('nombre_upd');		
-		$param['Descripcion_gt'] = $this->input->post('descripcion_upd');			
+		$param['Nombre_gt'] =trim($this->input->post('nombre_upd'));
+		$param['Descripcion_gt'] = trim($this->input->post('descripcion_upd'));
 		$result = $this->trabajo_m->Upd($param);
 		($result) ? $this->mensaje('success', 'Datos modificados con éxito') : $this->mensaje('error', 'Error, no se pudo modificar los datos.');
 		$this->Redirect();

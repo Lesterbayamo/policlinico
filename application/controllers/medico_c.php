@@ -30,7 +30,11 @@ class medico_c extends Main_Controller
 	}else{$id=0;}
 		echo json_encode($this->medico_m->List($this->Anno_Mes_Actual(),$id));
 	}
-	
+	public function List_Labor()
+	{		
+		$vista = $this->input->post('num');
+		echo json_encode($this->medico_m->List_Labor($this->Anno_Mes_Actual(),$vista));
+	}
 	public function Add(){
 		$param['ci_medico'] = $this->input->post('ci_medico_add');		
 		$param['Table_ESPECIALIDAD_id_especialidad'] = $this->input->post('especialidad_add');		

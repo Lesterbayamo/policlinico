@@ -24,15 +24,24 @@ class especialidad_c extends Main_Controller
 	}
 	
 	
+	public function List_Esp_X_Ge_Not()
+	{		
+		$id=$this->input->post('id');	
+		echo json_encode($this->especialidad_m->List_Esp_X_Ge_Not($id));
+	}
+	public function List_Esp_X_Ge_In()
+	{		
+		$id=$this->input->get('id');	
+		echo json_encode($this->especialidad_m->List_Esp_X_Ge_In($id));
+	}
 	public function List()
 	{		
 		echo json_encode($this->especialidad_m->List());
 	}
 	
 	public function Add(){
-		$param['Nombre_esp'] = $this->input->post('nombre_especialidad_add');		
-		$param['Siglas_esp'] =$this->input->post('abreviatura_add');
-		$param['Descripcion_esp'] = $this->input->post('descripcion_add');		
+		$param['Nombre_esp'] = trim($this->input->post('nombre_especialidad_add'));	
+		$param['Descripcion_esp'] = trim($this->input->post('descripcion_add'));		
 		$result = $this->especialidad_m->Add($param);
 		($result) ? $this->mensaje('success', 'Datos agregados con éxito'):$this->mensaje('error', 'Error, no se pudo agregar los datos');
 		$this->Redirect();	
@@ -40,9 +49,9 @@ class especialidad_c extends Main_Controller
 
 	public function Upd(){
 		$param['id_especialidad'] = $this->input->post('id_especialidad');		
-		$param['Nombre_esp'] =$this->input->post('nombre_especialidad_upd');
-		$param['Siglas_esp'] =$this->input->post('abreviatura_upd');		
-		$param['Descripcion_esp'] = $this->input->post('descripcion_upd');		
+		$param['Nombre_esp'] =trim($this->input->post('nombre_especialidad_upd'));
+		$param['Siglas_esp'] =trim($this->input->post('abreviatura_upd'));		
+		$param['Descripcion_esp'] = trim($this->input->post('descripcion_upd'));		
 		
 			$result = $this->especialidad_m->Upd($param);
 			if($result)

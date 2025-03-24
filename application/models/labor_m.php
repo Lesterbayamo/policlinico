@@ -12,36 +12,46 @@ class labor_m extends Main_Model
 
 	
     
-	public function List()
+	public function List($vista)
 	{
 		//Retorna todos los registros en caso que no se le pase un id especifico
 		$this->db->select('*,Table_CONSULTORIO_MEDICO_id_consultorio_medico as consult,concat(Nombre_medico," ",Apellido_medico) as medico');
 		$this->db->from($this->tabla_name);
 		$this->db->join('table_medico','table_consultorio_medico_has_table_medico.Table_MEDICO_ci_medico=table_medico.ci_medico');
 		$this->db->join('table_consultorio_medico','table_consultorio_medico_has_table_medico.Table_CONSULTORIO_MEDICO_id_consultorio_medico=table_consultorio_medico.id_consultorio_medico','LEFT');
-		$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad','LEFT');
+		if($vista=="2"){
+			$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad');
+		}elseif($vista=="1"){
+			$this->db->where('table_medico.Table_ESPECIALIDAD_id_especialidad',0);
+		}else {
+			$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad','LEFT');
+		}		
 		
 		$s = $this->db->get();		
-		return $this->makeData($s->result());
+		return $this->makeData($s->result(),$vista);
 		#return $s->result();		
 	}
 	
-	private function makeData($re)
+	private function makeData($re,$vista)
 	{		
 	   $h = array();		
 	   foreach ($re  as $key => $u) {
 		$h1['consult'] = $u->consult;	 			 
 		$h1['Telefono_medico'] = $u->Telefono_medico;	 			 
-		$h1['Tipo_consulta'] = $u->Tipo_consulta;	 			 
-		$h1['Nombre_esp'] = $u->Nombre_esp;	 			 
+		$h1['Tipo_consulta'] = $u->Tipo_consulta;
 		$h1['ci_medico'] = $u->ci_medico;	 			 
 		$h1['Fecha_consulta'] = $u->Fecha_consulta;	 			 
 		$h1['medico'] = $u->medico;	 			 
-		$h1['id_especialidad'] = $u->id_especialidad;	 			 
-		$h1['Nombre_cm'] = $u->Nombre_cm;	
-		$identificador=md5($h1['consult'].$h1['ci_medico'].$h1['Fecha_consulta'].$h1['Tipo_consulta']);	 
-		$h1['Cantidad_paciente'] = (!$u->Cantidad_paciente)?$this->cant_m->List($identificador):$u->Cantidad_paciente;	 			 
-		
+		$h1['Nombre_cm'] = $u->Nombre_cm;
+		$h1['id_especialidad'] =null;
+		$h1['Cantidad_paciente'] = $u->Cantidad_paciente;
+		if($vista !="1"){
+			$h1['Nombre_esp'] = $u->Nombre_esp;	 			 
+			$h1['id_especialidad'] = $u->id_especialidad;	 			 
+			$identificador=md5($h1['consult'].$h1['ci_medico'].$h1['Fecha_consulta'].$h1['Tipo_consulta']);	 
+			$h1['Cantidad_paciente'] = (!$u->Cantidad_paciente)?$this->cant_m->List($identificador):$u->Cantidad_paciente;	 			 
+		}	 			 
+			
 		
 		$obj = (object) $h1;
 		array_push($h, $obj);

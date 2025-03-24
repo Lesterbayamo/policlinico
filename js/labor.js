@@ -3,109 +3,214 @@ $(document).ready(function() {
   var titulo_exportar = document.getElementById('titulo_exportar').textContent;
  
     //Dibujar la tabla de datos
-    var objeto_tabla ={  
-      dom: "<'row'<'form-inline'<'col-sm-offset-5 me-15'B>>>" +
-             "<'row'<'col-sm-7'l><'col-sm-5'f>>" +
-             "<'row'<'col-sm-12'tr>>" +
-             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-           buttons: [{
-               "extend": "excelHtml5",
-               "text": '<i class=" fa fa-file-excel "></i>',
-               "titleAttr": "Exportar a Excel",
-               "className": "btn btn-dark",
-               title: titulo_exportar,
-               "idText": "excel",
-               exportOptions: {
-                 columns: [0,1,2,3,4,5,6,7]
-               }
-             }, {
-               "extend": "pdfHtml5",
-               "text": '<i class=" fa fa-file-pdf "></i>',
-               "titleAttr": "Exportar a Pdf",
-               "className": "btn btn-dark",
-               title: titulo_exportar,
-               "idText": "pdf",
-               pageSize: 'LETTER',
-               orientation: 'landscape',
-               exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7]
-               }
-             }, {
-               extend: "print",
-               "text": '<i class=" fa fa-print "></i>',
-               "titleAttr": "Imprimir",
-               "className": "btn btn-dark",
-               title: titulo_exportar,           
-               exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7]
-               }
-             },
-             {
-               extend: "copyHtml5",
-               "text": '<i class="fa fa-copy"></i>',
-               "titleAttr": "Copiar",
-               "className": "btn btn-dark",
-               title: titulo_exportar,           
-               exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7]
-               }
-             },
-             {
-               extend: "csvHtml5",
-               "text": '<i class="fas fa-file-csv"></i>',
-               "titleAttr": "Exportar como CSV",
-               "className": "btn btn-dark",
-               title: titulo_exportar,           
-               exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7]
-               }
-             },
-             {
-              extend: "colvis",
-              "text": '<i class="fa fa-columns"></i>',
-              "titleAttr": "Columnas visibles",
-              "className": "btn btn-dark",
-              title: titulo_exportar,           
-              exportOptions: {
-                 columns: [0,1,2,3,4,5,6,7]
-              }
-            },
-           ],
-      "ajax":
-        {
-          "url": baseurl+"labor_c/List",
-          "type": "POST",
-          dataSrc: ''
-        },
-        "columns":
-        [        
-          {data: 'ci_medico', 'orderable': true, 'searchable': true},         
-          {data: 'medico', 'orderable': true, 'searchable': true},         
-          {data: 'Nombre_esp', 'orderable': true, 'searchable': true},         
-          {data: 'Tipo_consulta', 'orderable': true, 'searchable': true},         
-          {data: 'Nombre_cm', 'orderable': true, 'searchable': true},         
-          {data: 'Fecha_consulta', 'orderable': true, 'searchable': true},         
-          {data: 'Cantidad_paciente', 'orderable': true, 'searchable': true},         
-          {data: 'Telefono_medico', 'orderable': true, 'searchable': true},         
-          
-          
-           
+    if(vista !="1"){
+      var objeto_tabla ={  
+        dom: "<'row'<'form-inline'<'col-sm-offset-5 me-15'B>>>" +
+               "<'row'<'col-sm-7'l><'col-sm-5'f>>" +
+               "<'row'<'col-sm-12'tr>>" +
+               "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+             buttons: [{
+                 "extend": "excelHtml5",
+                 "text": '<i class=" fa fa-file-excel "></i>',
+                 "titleAttr": "Exportar a Excel",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,
+                 "idText": "excel",
+                 exportOptions: {
+                   columns: [0,1,2,3,4,5,6,7]
+                 }
+               }, {
+                 "extend": "pdfHtml5",
+                 "text": '<i class=" fa fa-file-pdf "></i>',
+                 "titleAttr": "Exportar a Pdf",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,
+                 "idText": "pdf",
+                 pageSize: 'LETTER',
+                 orientation: 'landscape',
+                 exportOptions: {
+                    columns: [0,1,2,3,4,5,6,7]
+                 }
+               }, {
+                 extend: "print",
+                 "text": '<i class=" fa fa-print "></i>',
+                 "titleAttr": "Imprimir",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,           
+                 exportOptions: {
+                    columns: [0,1,2,3,4,5,6,7]
+                 }
+               },
+               {
+                 extend: "copyHtml5",
+                 "text": '<i class="fa fa-copy"></i>',
+                 "titleAttr": "Copiar",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,           
+                 exportOptions: {
+                    columns: [0,1,2,3,4,5,6,7]
+                 }
+               },
+               {
+                 extend: "csvHtml5",
+                 "text": '<i class="fas fa-file-csv"></i>',
+                 "titleAttr": "Exportar como CSV",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,           
+                 exportOptions: {
+                    columns: [0,1,2,3,4,5,6,7]
+                 }
+               },
+               {
+                extend: "colvis",
+                "text": '<i class="fa fa-columns"></i>',
+                "titleAttr": "Columnas visibles",
+                "className": "btn btn-dark",
+                title: titulo_exportar,           
+                exportOptions: {
+                   columns: [0,1,2,3,4,5,6,7]
+                }
+              },
+             ],
+        "ajax":
           {
-            "orderable": false,
+            "url": baseurl+"labor_c/List?num="+vista,
+            "type": "POST",
+            dataSrc: ''
+          },
+          "columns":
+          [        
+            {data: 'ci_medico', 'orderable': true, 'searchable': true},         
+            {data: 'medico', 'orderable': true, 'searchable': true},         
+            {data: 'Nombre_esp', 'orderable': true, 'searchable': true},         
+            {data: 'Tipo_consulta', 'orderable': true, 'searchable': true},         
+            {data: 'Nombre_cm', 'orderable': true, 'searchable': true},         
+            {data: 'Fecha_consulta', 'orderable': true, 'searchable': true},         
+            {data: 'Cantidad_paciente', 'orderable': true, 'searchable': true},         
+            {data: 'Telefono_medico', 'orderable': true, 'searchable': true},         
             
-            render: function(data, type, row)                                                                                                                                                                                                                                      
+            
+             
             {
-              if(nivel_acceso=="Administrador"){ 
-              return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.Tipo_consulta+'\',\''+row.consult+'\',\''+row.ci_medico+'\',\''+row.Nombre_cm+'\',\''+row.Cantidad_paciente+'\',\''+row.Fecha_consulta+'\',\''+row.medico+'\',\''+row.id_especialidad+'\');"><i class="fa fa-edit"></i></a>';  
-              }
-              else{
-                return '<a href="#" class="btn disabled btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" title="Editar"><i class="fa fa-edit"></i></a>';
+              "orderable": false,
+              
+              render: function(data, type, row)                                                                                                                                                                                                                                      
+              {
+                if(nivel_acceso=="Administrador"){ 
+                return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.Tipo_consulta+'\',\''+row.consult+'\',\''+row.ci_medico+'\',\''+row.Nombre_cm+'\',\''+row.Cantidad_paciente+'\',\''+row.Fecha_consulta+'\',\''+row.medico+'\',\''+row.id_especialidad+'\');"><i class="fa fa-edit"></i></a>';  
+                }
+                else{
+                  return '<a href="#" class="btn disabled btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" title="Editar"><i class="fa fa-edit"></i></a>';
+                }
               }
             }
-          }
-        ],
-        "order": [[5, "desc"],[3, "asc"],[4, "desc"],[2, "desc"]],  
+          ],
+          "order": [[5, "desc"],[3, "asc"],[4, "desc"],[2, "desc"]],  
+      }
+    }else{
+      var objeto_tabla ={  
+        dom: "<'row'<'form-inline'<'col-sm-offset-5 me-15'B>>>" +
+               "<'row'<'col-sm-7'l><'col-sm-5'f>>" +
+               "<'row'<'col-sm-12'tr>>" +
+               "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+             buttons: [{
+                 "extend": "excelHtml5",
+                 "text": '<i class=" fa fa-file-excel "></i>',
+                 "titleAttr": "Exportar a Excel",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,
+                 "idText": "excel",
+                 exportOptions: {
+                   columns: [0,1,2,3,4,5]
+                 }
+               }, {
+                 "extend": "pdfHtml5",
+                 "text": '<i class=" fa fa-file-pdf "></i>',
+                 "titleAttr": "Exportar a Pdf",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,
+                 "idText": "pdf",
+                 pageSize: 'LETTER',
+                 orientation: 'landscape',
+                 exportOptions: {
+                    columns: [0,1,2,3,4,5]
+                 }
+               }, {
+                 extend: "print",
+                 "text": '<i class=" fa fa-print "></i>',
+                 "titleAttr": "Imprimir",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,           
+                 exportOptions: {
+                    columns: [0,1,2,3,4,5]
+                 }
+               },
+               {
+                 extend: "copyHtml5",
+                 "text": '<i class="fa fa-copy"></i>',
+                 "titleAttr": "Copiar",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,           
+                 exportOptions: {
+                    columns: [0,1,2,3,4,5]
+                 }
+               },
+               {
+                 extend: "csvHtml5",
+                 "text": '<i class="fas fa-file-csv"></i>',
+                 "titleAttr": "Exportar como CSV",
+                 "className": "btn btn-dark",
+                 title: titulo_exportar,           
+                 exportOptions: {
+                    columns: [0,1,2,3,4,5]
+                 }
+               },
+               {
+                extend: "colvis",
+                "text": '<i class="fa fa-columns"></i>',
+                "titleAttr": "Columnas visibles",
+                "className": "btn btn-dark",
+                title: titulo_exportar,           
+                exportOptions: {
+                   columns: [0,1,2,3,4,5]
+                }
+              },
+             ],
+        "ajax":
+          {
+            "url": baseurl+"labor_c/List?num="+vista,
+            "type": "POST",
+            dataSrc: ''
+          },
+          "columns":
+          [        
+            {data: 'ci_medico', 'orderable': true, 'searchable': true},         
+            {data: 'medico', 'orderable': true, 'searchable': true},         
+            {data: 'Nombre_cm', 'orderable': true, 'searchable': true},         
+            {data: 'Fecha_consulta', 'orderable': true, 'searchable': true},         
+            {data: 'Cantidad_paciente', 'orderable': true, 'searchable': true},         
+            {data: 'Telefono_medico', 'orderable': true, 'searchable': true},         
+            
+            
+             
+            {
+              "orderable": false,
+              
+              render: function(data, type, row)                                                                                                                                                                                                                                      
+              {
+                if(nivel_acceso=="Administrador"){ 
+                return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.Tipo_consulta+'\',\''+row.consult+'\',\''+row.ci_medico+'\',\''+row.Nombre_cm+'\',\''+row.Cantidad_paciente+'\',\''+row.Fecha_consulta+'\',\''+row.medico+'\',\''+row.id_especialidad+'\');"><i class="fa fa-edit"></i></a>';  
+                }
+                else{
+                  return '<a href="#" class="btn disabled btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" title="Editar"><i class="fa fa-edit"></i></a>';
+                }
+              }
+            }
+          ],
+          "order": [[5, "desc"],[3, "asc"],[4, "desc"],[2, "desc"]],  
+      }
     }
+    
     $('#tb_labor').DataTable(objeto_tabla);
     $('[title ="Exportar a Excel"]').tooltip();
     $('[title ="Exportar a Pdf"]').tooltip();
@@ -181,13 +286,11 @@ F_rango_edad_input =   function (rango,id,val=0) {
 } 
    
 //Listar en el combo Medico
-$.post(baseurl + "medico_c/List",
+$.post(baseurl + "medico_c/List_Labor",{num:vista},
   function (data) {
     var c = JSON.parse(data);     
     $.each(c, function (i, item) {
-      $('#medico_add').append(`<option value="${item.ci_medico}"> ${item.medico} - ${item.Nombre_esp}</option>`);
-      //$('#medico_add').append('<option value="' + item.ci_medico + '">' + item.medico + '</option>');          
-      
+      $('#medico_add').append(`<option value="${item.ci_medico}"> ${item.medico} ${item.Nombre_esp}</option>`);                 
     });
   }); 
 
@@ -225,7 +328,7 @@ $.post(baseurl + "consultorio_c/List",
   function (data) {
     var c = JSON.parse(data);     
     $.each(c, function (i, item) {
-      $('#consultorio_add').append(`<option value="${item.id_consultorio_medico}"> ${item.Nombre_gt} - ${item.Nombre_cm}</option>`);
+      $('#consultorio_add').append(`<option value="${item.id_consultorio_medico}"> ${item.Nombre_gt} ${item.Nombre_cm}</option>`);
       //$('#medico_add').append('<option value="' + item.ci_medico + '">' + item.medico + '</option>');          
     
     });

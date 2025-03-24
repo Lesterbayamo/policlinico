@@ -17,12 +17,43 @@ class especialidad_m extends Main_Model
 		$this->db->select('*');
 		$this->db->from($this->tabla_name);
 		if($id){$this->db->where($this->tabla_id,$id);}
-		$s = $this->db->get();		
+		$s = $this->db->get();	
+		//$this->db->order_by('Nombre_esp','ASC');	
 		return $this->makeData($s->result());
 		#return $s->result();
 		
 	}
 	
+	public function List_Esp_X_Ge_Not($id_ge){
+		$this->db->select('Table_ESPECIALIDAD_id_especialidad');
+		$this->db->from('table_especialidad_has_table_grupo_edad');				
+		$this->db->where('Table_GRUPO_EDAD_id_grupo_edad',$id_ge);				
+		$result=$this->db->get_compiled_select();		
+		
+		
+		$this->db->select('*');
+		$this->db->from($this->tabla_name);		
+		$this->db->where_not_in($this->tabla_id,$result,false);//PARA QUE NO SE LISTE EL TRABAJADOR QUE TIENE CUENTA DE USUARIO
+				
+		$this->db->order_by('Nombre_esp','ASC');		
+		$s = $this->db->get();		
+		return $s->result();	
+	}
+	public function List_Esp_X_Ge_In($id_ge){
+		$this->db->select('Table_ESPECIALIDAD_id_especialidad');
+		$this->db->from('table_especialidad_has_table_grupo_edad');				
+		$this->db->where('Table_GRUPO_EDAD_id_grupo_edad',$id_ge);				
+		$result=$this->db->get_compiled_select();		
+		
+		
+		$this->db->select('*');
+		$this->db->from($this->tabla_name);		
+		$this->db->where_in($this->tabla_id,$result,false);//PARA QUE NO SE LISTE EL TRABAJADOR QUE TIENE CUENTA DE USUARIO
+				
+		$this->db->order_by('Nombre_esp','ASC');		
+		$s = $this->db->get();		
+		return $s->result();	
+	}
 	private function makeData($re)
 	{		
 	   $h = array();	   
@@ -42,6 +73,7 @@ class especialidad_m extends Main_Model
 		}
 		
 		$h1['edades'] = implode(', ',$h_edades);	 
+		
 		
 		$obj = (object) $h1;
 		array_push($h, $obj);
@@ -63,6 +95,8 @@ class especialidad_m extends Main_Model
 		$data['tabla']=$this->tabla_name;	
 		$data['campo']="Nombre_esp";	
 		$data['id']=$param['Nombre_esp'];	
+		$data['clave_campo']=$this->tabla_id;
+		$data['clave_valor']=$param[$this->tabla_id];
 		if(!$this->isRelacionado($data)) {
 		$this->db->where($this->tabla_id, $param[$this->tabla_id]);
 		$this->db->update($this->tabla_name, $param);			

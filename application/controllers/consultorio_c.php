@@ -31,8 +31,8 @@ class consultorio_c extends Main_Controller
 	
 	public function Add(){
 		$param['Table_GRUPO_TRABAJO_id_grupo_trabajo'] = $this->input->post('grupo_trabajo_add');		
-		$param['Nombre_cm'] = $this->input->post('nombre_add');		
-		$param['Direccion_cm'] = $this->input->post('direccion_add');		
+		$param['Nombre_cm'] = trim($this->input->post('nombre_add'));		
+		$param['Direccion_cm'] = trim($this->input->post('direccion_add'));		
 			
 		$result = $this->consultorio_m->Add($param);
 		($result) ? $this->mensaje('success', 'Datos agregados con éxito'):$this->mensaje('error', 'Error, no se pudo agregar los datos');
@@ -42,8 +42,8 @@ class consultorio_c extends Main_Controller
 	public function Upd(){
 		$param['id_consultorio_medico'] = $this->input->post('id_consultorio');		
 		$param['Table_GRUPO_TRABAJO_id_grupo_trabajo'] = $this->input->post('grupo_trabajo_upd');		
-		$param['Nombre_cm'] = $this->input->post('nombre_upd');		
-		$param['Direccion_cm'] = $this->input->post('direccion_upd');		
+		$param['Nombre_cm'] = trim($this->input->post('nombre_upd'));		
+		$param['Direccion_cm'] = trim($this->input->post('direccion_upd'));		
 		
 			$result = $this->consultorio_m->Upd($param);
 			if($result)

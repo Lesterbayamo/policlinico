@@ -55,13 +55,22 @@
         
         <li><a class="drop" href="#">Labor del Médico</a>
           <ul>
-            <li><a href="<?php echo base_url();?>Labor_Medico">Labor del Médico</a></li>
-            <li><a   href="<?php echo base_url();?>Medico">Médicos</a></li>        
+            <li><a href="<?php echo base_url();?>Labor_Medico/1">Consultas del médico de la familia</a></li>
+            <li><a href="<?php echo base_url();?>Labor_Medico/2">Consultas de los Especialistas</a></li>               
+          </ul>
+        </li>
+        <li><a class="drop" href="#">Médicos</a>
+          <ul>
+           <li><a   href="<?php echo base_url();?>Medico">Médicos</a></li>        
           </ul>
         </li>
         <li><a class="drop" href="#">Especialidades</a>
           <ul>
-            <li><a href="<?php echo base_url();?>Especialidades">Especialidades</a></li>
+            <li><a href="<?php echo base_url();?>Especialidades">Especialidades</a></li>             
+          </ul>
+        </li>
+        <li><a class="drop" href="#">Grupos de Edades</a>
+          <ul>
             <li><a   href="<?php echo base_url();?>Grupo_Edades">Grupos de Edades</a></li>        
           </ul>
         </li>

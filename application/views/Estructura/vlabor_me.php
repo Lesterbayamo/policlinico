@@ -5,7 +5,7 @@
         <div class="row mb-2">
             <div class="col-sm-10">
                 <b>
-                    <h1> GESTIÓN DE LA LABOR DE LOS MÉDICOS</h1>
+                    <h1> GESTIÓN DE LA LABOR DE LOS MÉDICOS ESPECIALISTAS</h1>
                 </b>
             </div>
             <div class="col-sm-2">
@@ -33,7 +33,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-success">
-                        <spam id="titulo_exportar">Listado de la gestión de la labor de los médicos.</spam>
+                        <spam id="titulo_exportar">Listado de la gestión de la labor de los médicos especialistas.</spam>
                     </div>
                     <!-- /.card-header -->
 
@@ -53,7 +53,7 @@
                                     <th style="width: 5%;">Teléfono</th>
 
                                     <th style="width: 1%;">Editar</th>
-
+                                    
                                 </tr>
 
                             </thead>
@@ -91,7 +91,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-
+                            <input type="hidden" id="vista" name="vista" value="<?=$vista?>">
                                 <div class="form-group ">
                                     <label>Médico</label>
                                     <div class="input-group">
@@ -119,7 +119,7 @@
                                     </div>
                                     <!-- /.input group -->
                                 </div>
-
+                                
 
                                 <div class="form-group ">
                                     <label>Consultorio</label>
@@ -137,7 +137,7 @@
 
                             </div>
 
-                            <input type="hidden" id="vista" name="vista" value="<?=$vista?>">
+
                         </div>
                         <div id="div_rango_edad" class="row"></div>
                     </div>
@@ -175,7 +175,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <input type="hidden" id="vista" name="vista" value="<?=$vista?>">
+                            <input type="hidden" id="vista" name="vista" value="<?=$vista?>">
                                 <div class="form-group ">
                                     <label>Médico</label>
                                     <div class="input-group">
@@ -204,7 +204,7 @@
                                 </div>
 
 
-                                <!--  <div class="form-group">
+                               <!--  <div class="form-group">
                                     <label>Pacientes atendidos</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -236,11 +236,12 @@
                                             <span class="input-group-text bg-dark"><i
                                                     class="fas fa-spell-check"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" name="tipo_upd" id="tipo_upd" readonly>
-
+                                        <input type="text" class="form-control" name="tipo_upd"
+                                            id="tipo_upd" readonly>
+                                        
                                     </div>
                                 </div>
-
+                                
                                 <div id="div_rango_edad_upd" class="row"></div>
                             </div>
 
@@ -282,8 +283,8 @@
                 <form id="formCampDel" action="<?php echo base_url(); ?>consultorio_c/Delete" method="POST">
                     <div class="card-body">
                         <!-- Parametros ocultos -->
-                        <input type="hidden" id="id_delete" name="id_delete">
                         <input type="hidden" id="vista" name="vista" value="<?=$vista?>">
+                        <input type="hidden" id="id_delete" name="id_delete">
                         <h5>¿Est&aacute; seguro de querer eliminar los datos seleccionados? La operación será
                             irreversible</h5>
                     </div>
@@ -342,5 +343,5 @@
 <!-- /.modal -->
 
 <script type="text/javascript">
-var vista = "<?=$vista?>";
-</script>
+    var vista = "<?=$vista?>";               
+</script> 

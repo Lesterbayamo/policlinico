@@ -14,6 +14,9 @@ class Main_Model extends CI_Model
 		$this->db->select('*');
 		$this->db->from($data['tabla']);
 		$this->db->where($data['campo'], $data['id']);
+		if(count($data)>3){
+			$this->db->where($data['clave_campo'].'!=', $data['clave_valor']);			
+		}
 		$this->db->limit(1);
 		$s = $this->db->get();
 		return count($s->result());
