@@ -70,7 +70,7 @@
 
         this.locale = {
             direction: 'ltr',
-            format: moment.localeData().longDateFormat('L'),
+            format: 'YYYY/MM/DD',
             separator: ' - ',
             applyLabel: 'Seleccionar',
             cancelLabel: 'Cancelar',

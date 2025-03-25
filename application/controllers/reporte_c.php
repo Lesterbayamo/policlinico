@@ -12,9 +12,16 @@ class reporte_c extends Main_Controller
 	}
    
 	public function inicio_diario()		
-	{  //var_dump(cal_days_in_month(CAL_GREGORIAN,3,2025));return;
+	{  
 		if($this->ControlAcceso()){
-			$param['datos'] = $this->List_Diario();
+			if($this->input->post('fecha'))
+			{
+				$fecha = $this->input->post('fecha');				
+			}else {
+				$fecha = $this->fechaHoy()."-".$this->fechaHoy();
+			}
+			$param['datos'] = $this->List_Diario($fecha);			
+			$param['valorFecha'] =$this->input->post('fecha');			
 			$this->Cargar_Plantilla('Reportes/vdia',$param);		
 		} else{
 			if($this->ControlConexion()){
@@ -25,9 +32,9 @@ class reporte_c extends Main_Controller
 	}
 	
 	
-	public function List_Diario()
+	public function List_Diario($fecha)
 	{		
-		return $this->reporte_m->List_Diario();
+		return $this->reporte_m->List_Diario($fecha);
 	}
 	
 	

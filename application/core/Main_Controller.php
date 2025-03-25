@@ -28,6 +28,12 @@ public function hoy(){
   $hoy = getdate($gtm);
 	return $hoy['year'] . "-" . $hoy['mon'] . "-" . $hoy['mday'] . " " . $hoy['hours'] . ":" . $hoy['minutes'] . ":" . $hoy['seconds'];
 }
+public function fechaHoy($diff=0){
+  date_default_timezone_set('GMT');
+  $gtm = time() -$this->Cambio_Horario()-$diff*60*60*24;  
+  $hoy = getdate($gtm);  
+	return $hoy['year'] . "/" . $hoy['mon'] . "/" . $hoy['mday'];
+}
 
 public function Anno(){
   date_default_timezone_set('GMT');

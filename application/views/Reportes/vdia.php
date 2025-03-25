@@ -5,7 +5,7 @@
         <div class="row mb-2">
             <div class="col-sm-10">
                 <b>
-                    <h1> Consultas diarias por especialidad</h1>
+                    <h1> Consultas por especialidad</h1>
                 </b>
             </div>
             <div class="col-sm-2">
@@ -28,28 +28,29 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-success">
-                        <spam id="titulo_exportar">Reporte de las consultas diarias por especialidad.</spam>
+                        <spam id="titulo_exportar">Reporte de las consultas por especialidad.</spam>
                     </div>
                     <!-- /.card-header -->
-                    <form action="" method="post">
+                    <form action="<?php echo base_url(); ?>Consultas-diarias-por-especialidad/" method="POST">
 
                         <div class="form-group col-2">
                             <label>Intervalo de Fecha</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text bg-dark"><i
-                                    class="fas fa-spell-check"></i></span>
+                                    class="fa fa-calendar"></i></span>
                                 </div>
-                                <input type="text" class="form-control" id="daterange-btn" name="daterange-btn"
+                                <input type="text" class="form-control" id="daterange-btn" name="fecha"
+                                value="<?=$valorFecha;?>"
                                 required>
                             </div>
                             <!-- /.input group -->
                         </div>
                         <button type="submit" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Adicionar">
-                    <b><i class="fa fa-save"></i></b> Buscar</button>
+                    <b><i class="fa fa-search"></i></b> Buscar</button>
                     </form>
                    
-                    <div class="card-body"><?php var_dump($datos);?>
+                    <div class="card-body"><?php //var_dump($valorFecha);?>
                         <table style="width: 100%" id="tb_labor" alin="center"
                             class="table table-bordered  table-hover table-condensed">
                             <thead>

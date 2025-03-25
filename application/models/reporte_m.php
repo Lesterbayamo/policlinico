@@ -11,8 +11,9 @@ class reporte_m extends Main_Model
 
 	
     
-	public function List_Diario()
+	public function List_Diario($rangoFecha)
 	{		
+		$fechas = explode("-",$rangoFecha);//return $fechas;
 		$this->db->select('Tipo_consulta,Nombre_esp,Fecha_consulta,
 		SUM(Cantidad_paciente) as cant
 		');
@@ -20,6 +21,8 @@ class reporte_m extends Main_Model
 		$this->db->join('table_medico','table_consultorio_medico_has_table_medico.Table_MEDICO_ci_medico=table_medico.ci_medico');
 		#$this->db->join('table_consultorio_medico','table_consultorio_medico_has_table_medico.Table_CONSULTORIO_MEDICO_id_consultorio_medico=table_consultorio_medico.id_consultorio_medico','LEFT');
 		$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad');
+		$this->db->where('Fecha_consulta >= ',$fechas[0]);		
+		$this->db->where('Fecha_consulta <= ',$fechas[1]);		
 		$this->db->group_by('Fecha_consulta');		
 		$this->db->group_by('Nombre_esp');		
 		$this->db->group_by('Tipo_consulta');		

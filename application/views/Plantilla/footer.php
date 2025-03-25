@@ -263,17 +263,20 @@ $(function() {
                 'Últimos 10 Días': [moment().subtract(9, 'days'), moment()],
                 'Últimos 20 Días': [moment().subtract(19, 'days'), moment()],
                 'Últimos 30 Días': [moment().subtract(29, 'days'), moment()],
-                'Mes Actual': [moment().startOf('month'), moment().endOf('month')],
+                'Este Mes': [moment().startOf('month'), moment().endOf('month')],
                 'Último Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month')
                 .endOf('month')
             ],
-            'Año Actual': [moment().startOf('year'), moment()]
-            },
-            startDate: moment().subtract(29, 'days'),
-            endDate: moment()
+            'Año Actual': [moment().startOf('year'), moment()],
+            'Último Año': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year')
+                .endOf('year')
+            ],
+            }/* ,
+            startDate: moment(),
+            endDate: moment() */
         },
         function(start, end) {
-            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+            $('#reportrange span').html(start.format('YYYY/MM/DD') + ' - ' + end.format('YYYY/MM/DD'))
         }
     )
 
