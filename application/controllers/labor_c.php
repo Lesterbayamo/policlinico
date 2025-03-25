@@ -96,10 +96,9 @@ class labor_c extends Main_Controller
 				$valor['cant_x_ge']=$_POST[$nombre];
 				array_push($valores,$valor);
 			}
-		}
+		}		
 		
-		
-		if(!count($valores)){
+		if(count($valores)<=1){
 			$param['Cantidad_paciente'] = $this->input->post('cantidad_upd');		
 		}else {
 			$res = $this->cant_m->Upd($valores);	

@@ -254,17 +254,20 @@ $(function() {
             format: 'MM/DD/YYYY hh:mm A'
         }
     })
+   
     //Date range as a button
     $('#daterange-btn').daterangepicker({
             ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month')
-                    .endOf('month')
-                ]
+                'Hoy': [moment(), moment()],
+                'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Últimos 10 Días': [moment().subtract(9, 'days'), moment()],
+                'Últimos 20 Días': [moment().subtract(19, 'days'), moment()],
+                'Últimos 30 Días': [moment().subtract(29, 'days'), moment()],
+                'Mes Actual': [moment().startOf('month'), moment().endOf('month')],
+                'Último Mes': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month')
+                .endOf('month')
+            ],
+            'Año Actual': [moment().startOf('year'), moment()]
             },
             startDate: moment().subtract(29, 'days'),
             endDate: moment()

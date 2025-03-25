@@ -31,7 +31,24 @@
                         <spam id="titulo_exportar">Reporte de las consultas diarias por especialidad.</spam>
                     </div>
                     <!-- /.card-header -->
+                    <form action="" method="post">
 
+                        <div class="form-group col-2">
+                            <label>Intervalo de Fecha</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-dark"><i
+                                    class="fas fa-spell-check"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="daterange-btn" name="daterange-btn"
+                                required>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <button type="submit" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Adicionar">
+                    <b><i class="fa fa-save"></i></b> Buscar</button>
+                    </form>
+                   
                     <div class="card-body"><?php var_dump($datos);?>
                         <table style="width: 100%" id="tb_labor" alin="center"
                             class="table table-bordered  table-hover table-condensed">

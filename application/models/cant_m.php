@@ -21,7 +21,7 @@ class cant_m extends Main_Model
 		$s = $this->db->get();		
 		$resultado = $s->result();
 		
-		return $resultado[0]->cant_x_ge;
+		return (count($resultado)) ? $resultado[0]->cant_x_ge : 0 ;	
 	}
 	public function List($identf)
 	{
