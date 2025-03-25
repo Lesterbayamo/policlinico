@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2025 a las 05:46:45
+-- Tiempo de generación: 24-03-2025 a las 17:48:37
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -39,18 +39,11 @@ CREATE TABLE `table_cant_x_ge` (
 --
 
 INSERT INTO `table_cant_x_ge` (`identificador`, `id_ge`, `cant_x_ge`) VALUES
-('1a2a69ca86c88792b453d9632c491352', 3, 14),
-('1a2a69ca86c88792b453d9632c491352', 4, 25),
-('2f5768aeb801132cec3f83597a50655d', 5, 2),
-('2f5768aeb801132cec3f83597a50655d', 7, 15),
-('2f5768aeb801132cec3f83597a50655d', 8, 1),
-('41349c0c73c5097771719e52aad13cfb', 3, 11),
-('41349c0c73c5097771719e52aad13cfb', 4, 23),
-('ccbfe70a877dddc11a0c7ce6c52a5c0d', 9, 1),
-('ccbfe70a877dddc11a0c7ce6c52a5c0d', 10, 2),
-('f40a4a26bb250f2f84a695e0d31017d9', 5, 15),
-('f40a4a26bb250f2f84a695e0d31017d9', 7, 15),
-('f40a4a26bb250f2f84a695e0d31017d9', 8, 22);
+('eeb9ea1a7e856c0f551955aa7253a5b4', 11, 12),
+('eeb9ea1a7e856c0f551955aa7253a5b4', 13, 45),
+('eeb9ea1a7e856c0f551955aa7253a5b4', 15, 23),
+('eeb9ea1a7e856c0f551955aa7253a5b4', 16, 11),
+('f8e963f82d3c3a053ec7eafbad1e9ec0', 11, 121);
 
 -- --------------------------------------------------------
 
@@ -70,7 +63,7 @@ CREATE TABLE `table_consultorio_medico` (
 --
 
 INSERT INTO `table_consultorio_medico` (`id_consultorio_medico`, `Table_GRUPO_TRABAJO_id_grupo_trabajo`, `Nombre_cm`, `Direccion_cm`) VALUES
-(1, 1, 'CMF 1', 'Calle 7'),
+(1, 1, 'CMF 1', 'Calle 7 1'),
 (2, 1, 'CMF 3', 'EL VALLE'),
 (3, 2, 'CMF 10', 'tuuy'),
 (5, 1, 'CMF 2', 'dfg ert erer');
@@ -94,24 +87,10 @@ CREATE TABLE `table_consultorio_medico_has_table_medico` (
 --
 
 INSERT INTO `table_consultorio_medico_has_table_medico` (`Table_CONSULTORIO_MEDICO_id_consultorio_medico`, `Table_MEDICO_ci_medico`, `Fecha_consulta`, `Tipo_consulta`, `Cantidad_paciente`) VALUES
-(0, '17110152147', '2025-03-10', 'Policlinico', 3),
-(0, '17110152147', '2025-03-11', 'Policlinico', 43),
-(0, '17110152147', '2025-03-17', 'Policlinico', 4),
-(0, '21548765325', '2025-03-08', 'Policlinico', 112),
-(0, '5412365985', '2025-03-11', 'Policlinico', 15),
-(0, '84578256352', '2025-03-18', 'Policlinico', NULL),
-(0, '95012445467', '2025-03-09', 'Policlinico', 12),
-(1, '12345678912', '2025-03-20', 'Terreno', NULL),
-(1, '17110152147', '2025-03-10', 'Terreno', 5),
-(1, '17110152147', '2025-03-12', 'Terreno', 15),
-(1, '21548765325', '2025-03-09', 'Terreno', 3),
-(1, '84578256352', '2025-03-11', 'Terreno', 12),
-(1, '84578256352', '2025-03-20', 'Terreno', NULL),
-(1, '95012445467', '2025-03-07', 'Terreno', 12),
-(1, '95012445467', '2025-03-18', 'Terreno', NULL),
-(1, '95012445467', '2025-03-19', 'Terreno', NULL),
-(2, '17110152147', '2025-03-10', 'Terreno', 12),
-(2, '84578256352', '2025-03-11', 'Terreno', 15);
+(0, '21548765325', '2025-03-23', 'Policlinico', NULL),
+(1, '17110152147', '2025-03-22', 'Terreno', 15),
+(1, '84578256352', '2025-03-22', 'Terreno', NULL),
+(5, '17110152147', '2025-03-23', 'Terreno', 12);
 
 -- --------------------------------------------------------
 
@@ -132,9 +111,34 @@ CREATE TABLE `table_especialidad` (
 
 INSERT INTO `table_especialidad` (`id_especialidad`, `Nombre_esp`, `Siglas_esp`, `Descripcion_esp`) VALUES
 (2, 'Estomatología', 'Estom', 'El merc'),
-(5, 'Dermatología', 'Der', 'gh uyt tyut'),
-(7, 'Medicina Interna', 'MI', 'tyttyty'),
-(8, 'Pediatria', 'hgn', 'ytrtrt');
+(5, 'Dermatología', 'Der', 'Especialidad encargada de las enfermedades de la piel'),
+(7, 'Medicina Interna', 'MI', 'tyttyty');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `table_especialidad_has_table_grupo_edad`
+--
+
+CREATE TABLE `table_especialidad_has_table_grupo_edad` (
+  `Table_ESPECIALIDAD_id_especialidad` int(10) UNSIGNED NOT NULL,
+  `Table_GRUPO_EDAD_id_grupo_edad` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `table_especialidad_has_table_grupo_edad`
+--
+
+INSERT INTO `table_especialidad_has_table_grupo_edad` (`Table_ESPECIALIDAD_id_especialidad`, `Table_GRUPO_EDAD_id_grupo_edad`) VALUES
+(2, 11),
+(2, 13),
+(2, 15),
+(2, 16),
+(5, 11),
+(5, 13),
+(5, 15),
+(5, 16),
+(7, 11);
 
 -- --------------------------------------------------------
 
@@ -144,8 +148,7 @@ INSERT INTO `table_especialidad` (`id_especialidad`, `Nombre_esp`, `Siglas_esp`,
 
 CREATE TABLE `table_grupo_edad` (
   `id_grupo_edad` int(10) UNSIGNED NOT NULL,
-  `Table_ESPECIALIDAD_id_especialidad` int(10) UNSIGNED NOT NULL,
-  `Rango_edad` varchar(10) DEFAULT NULL,
+  `Rango_edad` varchar(12) DEFAULT NULL,
   `Descripcion_ge` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -153,15 +156,12 @@ CREATE TABLE `table_grupo_edad` (
 -- Volcado de datos para la tabla `table_grupo_edad`
 --
 
-INSERT INTO `table_grupo_edad` (`id_grupo_edad`, `Table_ESPECIALIDAD_id_especialidad`, `Rango_edad`, `Descripcion_ge`) VALUES
-(3, 5, '2-5 años', 'sdrwe ewr'),
-(4, 5, '0-2 años', 'de sd\r\n'),
-(5, 2, '1-2 meses', 'poifdipofd'),
-(6, 6, '0-1 año', 'dfgdf'),
-(7, 2, '9-12 años', 'ertert'),
-(8, 2, '1-3 años', 'sdfds'),
-(9, 8, '1-6 meses', 'ghfdty\r\n'),
-(10, 8, '6-9 meses', 'hgf');
+INSERT INTO `table_grupo_edad` (`id_grupo_edad`, `Rango_edad`, `Descripcion_ge`) VALUES
+(11, '0-9', '0 a 9 años'),
+(13, '10-18', '10 a 18 años'),
+(14, '19', '19 años'),
+(15, '20-59', '20 a 59 años'),
+(16, '60 años y +', '60 años y más');
 
 -- --------------------------------------------------------
 
@@ -204,7 +204,7 @@ CREATE TABLE `table_medico` (
 INSERT INTO `table_medico` (`ci_medico`, `Table_ESPECIALIDAD_id_especialidad`, `Nombre_medico`, `Apellido_medico`, `Telefono_medico`) VALUES
 ('12345678912', 8, 'Javier', 'Perez Perez', '12-12-12-12'),
 ('17110152147', 0, 'Lester Rene', 'Olivera Ocaña', '23441414'),
-('21548765325', 6, 'Arnaldo', 'Lopez Cintra', '21547854'),
+('21548765325', 7, 'Arnaldo', 'Lopez Cintra', '21-54-78-54'),
 ('84578256352', 2, 'Pedro Rafael', 'Castro Macias', '14256398'),
 ('95012445467', 5, 'Lester', 'Olivera Alvarez', '55684871');
 
@@ -237,7 +237,9 @@ INSERT INTO `table_pronostico` (`mes_anno`, `tipo`, `Table_MEDICO_ci_medico`, `c
 ('03-2025', 'Terreno', '21548765325', 12),
 ('03-2025', 'Terreno', '5412365985', 5),
 ('03-2025', 'Terreno', '84578256352', 50),
-('03-2025', 'Terreno', '95012445467', 25);
+('03-2025', 'Terreno', '95012445467', 25),
+('04-2025', 'Policlinico', '17110152147', 25),
+('04-2025', 'Terreno', '17110152147', 10);
 
 -- --------------------------------------------------------
 
@@ -249,7 +251,7 @@ CREATE TABLE `table_usuario` (
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `usuario` varchar(50) DEFAULT NULL,
   `nombre_usuario` varchar(250) DEFAULT NULL,
-  `rol` enum('Administrador','Administrativo','Especialista') DEFAULT 'Administrativo',
+  `rol` enum('Administrador','Director','Especialista','Jefe Departamento') DEFAULT 'Especialista',
   `contrasenna` varchar(100) DEFAULT NULL,
   `fecha_creado` datetime DEFAULT NULL,
   `fecha_modificado` datetime DEFAULT NULL,
@@ -264,7 +266,7 @@ CREATE TABLE `table_usuario` (
 
 INSERT INTO `table_usuario` (`id_usuario`, `usuario`, `nombre_usuario`, `rol`, `contrasenna`, `fecha_creado`, `fecha_modificado`, `fecha_ult_conex`, `creado_por`, `estado_usuario`) VALUES
 (1, 'admin', 'Administrador del Sitema', 'Administrador', '0cc175b9c0f1b6a831c399e269772661', '2025-02-23 23:19:34', '2025-02-23 23:19:34', NULL, 1, 'Activo'),
-(2, 'invitado.sistema', 'Cuenta de Invitado', 'Administrativo', '0cc175b9c0f1b6a831c399e269772661', '2025-02-23 23:22:01', '2025-03-14 13:01:29', '2025-02-24 11:13:26', 1, 'Activo'),
+(2, 'invitado.sistema', 'Cuenta de Invitado', '', '0cc175b9c0f1b6a831c399e269772661', '2025-02-23 23:22:01', '2025-03-14 13:01:29', '2025-02-24 11:13:26', 1, 'Activo'),
 (3, 'ana.cid', 'Ana Cid Casid', 'Especialista', '41c874ebeb4ed111aec0385df864835a', '2025-03-14 13:11:31', '2025-03-14 13:12:41', NULL, 1, 'Activo');
 
 --
@@ -297,11 +299,18 @@ ALTER TABLE `table_especialidad`
   ADD PRIMARY KEY (`id_especialidad`);
 
 --
+-- Indices de la tabla `table_especialidad_has_table_grupo_edad`
+--
+ALTER TABLE `table_especialidad_has_table_grupo_edad`
+  ADD PRIMARY KEY (`Table_ESPECIALIDAD_id_especialidad`,`Table_GRUPO_EDAD_id_grupo_edad`),
+  ADD KEY `Table_ESPECIALIDAD_has_Table_GRUPO_EDAD_FKIndex1` (`Table_ESPECIALIDAD_id_especialidad`),
+  ADD KEY `Table_ESPECIALIDAD_has_Table_GRUPO_EDAD_FKIndex2` (`Table_GRUPO_EDAD_id_grupo_edad`);
+
+--
 -- Indices de la tabla `table_grupo_edad`
 --
 ALTER TABLE `table_grupo_edad`
-  ADD PRIMARY KEY (`id_grupo_edad`),
-  ADD KEY `Table_GRUPO_EDAD_FKIndex1` (`Table_ESPECIALIDAD_id_especialidad`);
+  ADD PRIMARY KEY (`id_grupo_edad`);
 
 --
 -- Indices de la tabla `table_grupo_trabajo`
@@ -342,13 +351,13 @@ ALTER TABLE `table_consultorio_medico`
 -- AUTO_INCREMENT de la tabla `table_especialidad`
 --
 ALTER TABLE `table_especialidad`
-  MODIFY `id_especialidad` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_especialidad` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `table_grupo_edad`
 --
 ALTER TABLE `table_grupo_edad`
-  MODIFY `id_grupo_edad` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_grupo_edad` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `table_grupo_trabajo`
