@@ -36,6 +36,20 @@ class cant_m extends Main_Model
 		$retVal = (count($resultado)) ? $resultado[0]->cant : 0 ;
 		return $retVal;
 	}
+	public function SiExiste($datos)
+	{
+		//Retorna todos los registros en caso que no se le pase un id especifico
+		$this->db->select('*');
+		$this->db->from($this->tabla_name);
+		$this->db->where('identificador',$datos['identificador']);
+		$this->db->where('id_ge',$datos['id_ge']);
+		
+		
+		$s = $this->db->get();		
+		$resultado = $s->result();
+		$retVal = (count($resultado)) ? true : false ;
+		return $retVal;
+	}
 			
 	public function Add($param)
     {	  
@@ -52,12 +66,21 @@ class cant_m extends Main_Model
 		$retVal = false;
 		foreach ($param as $key => $value) {
 			# code...
-			$this->db->where('identificador', $value['identificador']);
-			$this->db->where('id_ge', $value['id_ge']);
-			$this->db->update($this->tabla_name, $value);
-			if($this->db->affected_rows()){
+			$datos_comprobar['identificador']= $value['identificador'];
+			$datos_comprobar['id_ge']=$value['id_ge'];
+			$datos_comprobar['cant_x_ge']=$value['cant_x_ge'];
+			if($this->SiExiste($datos_comprobar)){
+				$this->db->where('identificador', $value['identificador']);
+				$this->db->where('id_ge', $value['id_ge']);
+				$this->db->update($this->tabla_name, $value);
+				if($this->db->affected_rows()){
+					$retVal = true;
+				}
+			}else {
+				$this->db->insert($this->tabla_name, $datos_comprobar);
 				$retVal = true;
 			}		
+			
 		}
 			
 		return 	$retVal;
