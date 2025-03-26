@@ -279,7 +279,21 @@ $(function() {
             $('#reportrange span').html(start.format('YYYY/MM/DD') + ' - ' + end.format('YYYY/MM/DD'))
         }
     )
+    $('#daterange-btn').change(mensaje);
+    function mensaje() {
+       var formulario = document.createElement('form');
+       formulario.id='form_dinamico';
+       formulario.method='POST';
+       formulario.action=baseurl+'Consultas-diarias-por-especialidad';
+       const input = document.createElement('input');
+       input.value=$('#daterange-btn').val();
+       input.hidden='true';
+       input.name='fecha';
+       formulario.append(input);
+       document.body.appendChild(formulario);
+       formulario.submit();
 
+    }
     //Timepicker
     $('#timepicker').datetimepicker({
         format: 'LT'

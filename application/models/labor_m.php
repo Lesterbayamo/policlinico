@@ -12,7 +12,7 @@ class labor_m extends Main_Model
 
 	
     
-	public function List($vista)
+	public function List($vista,$fechas=array(),$id_especialidad=0)
 	{
 		//Retorna todos los registros en caso que no se le pase un id especifico
 		$this->db->select('*,Table_CONSULTORIO_MEDICO_id_consultorio_medico as consult,concat(Nombre_medico," ",Apellido_medico) as medico');
@@ -26,7 +26,13 @@ class labor_m extends Main_Model
 		}else {
 			$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad','LEFT');
 		}		
-		
+		if ($id_especialidad) {
+			$this->db->where('id_especialidad',$id_especialidad);	
+		}
+		if (count($fechas)) {
+			$this->db->where('Fecha_consulta >= ',$fechas[0]);		
+			$this->db->where('Fecha_consulta <= ',$fechas[1]);		
+		}
 		$s = $this->db->get();		
 		return $this->makeData($s->result(),$vista);
 		#return $s->result();		

@@ -5,7 +5,8 @@ class reporte_m extends Main_Model
 	function __construct()
 	{
 		parent::__construct();	
-		
+		$this->load->model('labor_m');
+		$this->load->model('edades_m');
 		$this->tabla_name='table_consultorio_medico_has_table_medico';
 	}
 
@@ -14,50 +15,62 @@ class reporte_m extends Main_Model
 	public function List_Diario($rangoFecha)
 	{		
 		$fechas = explode("-",$rangoFecha);//return $fechas;
-		$this->db->select('Tipo_consulta,Nombre_esp,Fecha_consulta,
-		SUM(Cantidad_paciente) as cant
-		');
-		$this->db->from('table_consultorio_medico_has_table_medico');
+		$this->db->select('*');
+		$this->db->from($this->tabla_name);
 		$this->db->join('table_medico','table_consultorio_medico_has_table_medico.Table_MEDICO_ci_medico=table_medico.ci_medico');
-		#$this->db->join('table_consultorio_medico','table_consultorio_medico_has_table_medico.Table_CONSULTORIO_MEDICO_id_consultorio_medico=table_consultorio_medico.id_consultorio_medico','LEFT');
+		$this->db->join('table_consultorio_medico','table_consultorio_medico_has_table_medico.Table_CONSULTORIO_MEDICO_id_consultorio_medico=table_consultorio_medico.id_consultorio_medico','LEFT');
 		$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad');
 		$this->db->where('Fecha_consulta >= ',$fechas[0]);		
 		$this->db->where('Fecha_consulta <= ',$fechas[1]);		
 		$this->db->group_by('Fecha_consulta');		
 		$this->db->group_by('Nombre_esp');		
 		$this->db->group_by('Tipo_consulta');		
+		$this->db->order_by('Fecha_consulta','ASC');		
+		$this->db->order_by('Nombre_esp','ASC');		
+		$this->db->order_by('Tipo_consulta','ASC');		
 		
 		$s = $this->db->get();		
-		#return $this->makeData($s->result());
-		return $s->result();
+		return $this->makeData($s->result(),$fechas);
+		#return $s->result();
+		
 		
 	}
 	
-	/* private function makeData($re)
+	private function makeData($re,$fechas)
 	{		
 	   $h = array();	   
 		
-		$this->load->model('edades_m');
+		
 	   foreach ($re  as $key => $u) {
-		$h1['id_especialidad'] = $u->id_especialidad;	 
+		$h1['Tipo_consulta'] = $u->Tipo_consulta;	 
 		$h1['Nombre_esp'] = $u->Nombre_esp;	 
-		$h1['Siglas_esp'] = $u->Siglas_esp;	 
-		$h1['Descripcion_esp'] = $u->Descripcion_esp;	 
-			 
-		$edades = $this->edades_m->Edades_Especialidad($u->id_especialidad);
+		$h1['Fecha_consulta'] = $u->Fecha_consulta;	 
+		$sumaTotal=0;
+		$valores = $this->labor_m->List(2,$fechas,$u->id_especialidad);
+		foreach ($valores as $key => $value) {			
+			if ($u->Fecha_consulta == $value->Fecha_consulta && $u->Tipo_consulta == $value->Tipo_consulta) {
+				$sumaTotal += intval( $value->Cantidad_paciente);
+			}
+			#if (condition) {
+				# code...
+			#}
+		}		
+		$h1['Total_Atendido'] = $sumaTotal;	 
+		
+		$edades = $this->edades_m->List();
 		$h_edades = array();
 		foreach ($edades as $key => $val) {
 			# code...
 		  array_push($h_edades,$val->Rango_edad);
 		}
 		
-		$h1['edades'] = implode(', ',$h_edades);	 
-		
-		$obj = (object) $h1;
+		#$h1['edades'] = implode(', ',$h_edades);	 
+		$h2 = array_merge($h1,$h_edades);
+		$obj = (object) $h2;
 		array_push($h, $obj);
 	   }
 	   return $h;
-	} */
+	}
 	
 	
 		

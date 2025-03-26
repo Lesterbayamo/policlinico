@@ -31,8 +31,7 @@
                         <spam id="titulo_exportar">Reporte de las consultas por especialidad.</spam>
                     </div>
                     <!-- /.card-header -->
-                    <form action="<?php echo base_url(); ?>Consultas-diarias-por-especialidad/" method="POST">
-
+                  
                         <div class="form-group col-2">
                             <label>Intervalo de Fecha</label>
                             <div class="input-group">
@@ -46,11 +45,9 @@
                             </div>
                             <!-- /.input group -->
                         </div>
-                        <button type="submit" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Adicionar">
-                    <b><i class="fa fa-search"></i></b> Buscar</button>
-                    </form>
+                      
                    
-                    <div class="card-body"><?php //var_dump($valorFecha);?>
+                    <div class="card-body"><?php var_dump($datos);?>
                         <table style="width: 100%" id="tb_labor" alin="center"
                             class="table table-bordered  table-hover table-condensed">
                             <thead>
@@ -59,7 +56,10 @@
                                     <th style="width: 5%;">Tipo de Consulta</th>
                                     <!-- <th style="width: 5%;">CMF</th> -->
                                     <th style="width: 5%;">Fecha/Consulta</th>
-                                    <th style="width: 5%;">Cantidad/Paciente</th>                                  
+                                    <th style="width: 5%;">Cantidad/Paciente</th>   
+                                   <?php foreach ($rango_edades as $key => $rango) {
+                                    echo '<th style="width: 5%;">'.$rango->Rango_edad.'</th>';
+                                   } ?>
                                     
                                 </tr>
 
@@ -72,8 +72,10 @@
                                         echo '<tr>';
                                         echo '<td>'.$value->Nombre_esp.'</td>';
                                         echo '<td>'.$value->Tipo_consulta.'</td>';
+                                        /* echo '<td>'.$value->Tipo_consulta.'</td>'; */
                                         echo '<td>'.$value->Fecha_consulta.'</td>';
-                                        echo '<td>'.$value->cant.'</td>';                                       
+                                        echo '<td>'.$value->Total_Atendido.'</td>';
+                                                                            
                                         echo '</tr>';
                                     }
                                 ?>

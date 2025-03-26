@@ -8,6 +8,7 @@ class reporte_c extends Main_Controller
 	{
 		parent::__construct();
 		$this->load->model('reporte_m');		
+		$this->load->model('edades_m');		
 		$this->data_general['_redirect']='reporte_Medico';
 	}
    
@@ -21,6 +22,7 @@ class reporte_c extends Main_Controller
 				$fecha = $this->fechaHoy()."-".$this->fechaHoy();
 			}
 			$param['datos'] = $this->List_Diario($fecha);			
+			$param['rango_edades'] = $this->edades_m->List();			
 			$param['valorFecha'] =$this->input->post('fecha');			
 			$this->Cargar_Plantilla('Reportes/vdia',$param);		
 		} else{
