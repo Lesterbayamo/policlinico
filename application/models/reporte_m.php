@@ -7,6 +7,7 @@ class reporte_m extends Main_Model
 		parent::__construct();	
 		$this->load->model('labor_m');
 		$this->load->model('edades_m');
+		$this->load->model('cant_m');
 		$this->tabla_name='table_consultorio_medico_has_table_medico';
 	}
 
@@ -46,27 +47,33 @@ class reporte_m extends Main_Model
 		$h1['Nombre_esp'] = $u->Nombre_esp;	 
 		$h1['Fecha_consulta'] = $u->Fecha_consulta;	 
 		$sumaTotal=0;
+		$sumaTotalGE=array();
 		$valores = $this->labor_m->List(2,$fechas,$u->id_especialidad);
 		foreach ($valores as $key => $value) {			
 			if ($u->Fecha_consulta == $value->Fecha_consulta && $u->Tipo_consulta == $value->Tipo_consulta) {
 				$sumaTotal += intval( $value->Cantidad_paciente);
+				$identificador=md5($value->consult.$value->ci_medico.$value->Fecha_consulta.$value->Tipo_consulta);
+				$num=$this->cant_m->List_Valor_X($identificador);
+				
+				array_push($sumaTotalGE,$num);
 			}
 			#if (condition) {
 				# code...
 			#}
 		}		
 		$h1['Total_Atendido'] = $sumaTotal;	 
+		$h1['Total_GE'] = $sumaTotalGE;	 
 		
 		$edades = $this->edades_m->List();
 		$h_edades = array();
-		foreach ($edades as $key => $val) {
+		#foreach ($edades as $key => $val) {
 			# code...
-		  array_push($h_edades,$val->Rango_edad);
-		}
+		#  array_push($h_edades,$val->Rango_edad);
+		#}
 		
 		#$h1['edades'] = implode(', ',$h_edades);	 
-		$h2 = array_merge($h1,$h_edades);
-		$obj = (object) $h2;
+		#$h2 = array_merge($h1,$h_edades);
+		$obj = (object) $h1;
 		array_push($h, $obj);
 	   }
 	   return $h;

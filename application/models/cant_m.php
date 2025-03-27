@@ -23,6 +23,18 @@ class cant_m extends Main_Model
 		
 		return (count($resultado)) ? $resultado[0]->cant_x_ge : 0 ;	
 	}
+	public function List_Valor_X($identificador)
+	{
+		$this->db->select('*');
+		$this->db->from($this->tabla_name);
+		$this->db->where('identificador',$identificador);
+		
+		
+		$s = $this->db->get();		
+		$resultado = $s->result();
+		
+		return $resultado;	
+	}
 	public function List($identf)
 	{
 		//Retorna todos los registros en caso que no se le pase un id especifico
