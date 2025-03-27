@@ -80,6 +80,7 @@ class cant_m extends Main_Model
 			# code...
 			$datos_comprobar['identificador']= $value['identificador'];
 			$datos_comprobar['id_ge']=$value['id_ge'];
+			$datos_comprobar['id_x']=$value['id_x'];
 			$datos_comprobar['cant_x_ge']=$value['cant_x_ge'];
 			if($this->SiExiste($datos_comprobar)){
 				$this->db->where('identificador', $value['identificador']);

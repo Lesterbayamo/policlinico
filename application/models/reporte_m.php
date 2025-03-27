@@ -60,7 +60,13 @@ class reporte_m extends Main_Model
 			#if (condition) {
 				# code...
 			#}
-		}		
+		}	
+		#foreach ($sumaTotalGE as $key => $value) {
+		#	# code...
+		#	foreach ($value as $key => $val) {
+		#		# code...
+		#	}
+		#}	
 		$h1['Total_Atendido'] = $sumaTotal;	 
 		$h1['Total_GE'] = $sumaTotalGE;	 
 		

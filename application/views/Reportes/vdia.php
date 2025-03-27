@@ -47,7 +47,7 @@
                         </div>
                       
                    
-                    <div class="card-body"><?php var_dump($datos);?>
+                    <div class="card-body"><?php //$s = $datos[0]->Total_GE;var_dump($s[0]);?>
                         <table style="width: 100%" id="tb_labor" alin="center"
                             class="table table-bordered  table-hover table-condensed">
                             <thead>
