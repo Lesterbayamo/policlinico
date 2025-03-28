@@ -58,7 +58,6 @@ class labor_c extends Main_Controller
 			if(strpos('"'.$nombre.'"',"id_")){
 				#echo $nombre." ";
 				$valor['identificador']=md5($param['Table_CONSULTORIO_MEDICO_id_consultorio_medico'].$param['Table_MEDICO_ci_medico'].$param['Fecha_consulta'].$param['Tipo_consulta']);
-				$valor['id_x']=md5($param['Table_CONSULTORIO_MEDICO_id_consultorio_medico'].$param['Fecha_consulta'].$param['Tipo_consulta']);
 				$valor['id_ge']=substr($nombre,3);
 				$valor['cant_x_ge']=$_POST[$nombre];
 				array_push($valores,$valor);
@@ -93,7 +92,6 @@ class labor_c extends Main_Controller
 			if(strpos('"'.$nombre.'"',"id_")){
 				#echo $nombre." ";
 				$valor['identificador']=md5($param['Table_CONSULTORIO_MEDICO_id_consultorio_medico'].$param['Table_MEDICO_ci_medico'].$param['Fecha_consulta'].$param['Tipo_consulta']);
-				$valor['id_x']=md5($param['Table_CONSULTORIO_MEDICO_id_consultorio_medico'].$param['Fecha_consulta'].$param['Tipo_consulta']);
 				$valor['id_ge']=substr($nombre,3);
 				$valor['cant_x_ge']=$_POST[$nombre];
 				array_push($valores,$valor);

@@ -1,5 +1,9 @@
 $(document).ready(function() {
   var titulo_exportar = document.getElementById('titulo_exportar').textContent;
+  titulo_exportar = titulo_exportar+" En el periodo: "+ $('#daterange-btn').val();
+  var totalColumnas = $('#tb_labor thead th').length;
+  var columIndices = Array.from({length: totalColumnas},(_,i)=>i);
+
 
     //Dibujar la tabla de datos
     var objeto_tabla ={  
@@ -15,7 +19,7 @@ $(document).ready(function() {
                title: titulo_exportar,
                "idText": "excel",
                exportOptions: {
-                 columns: [0,1,2,3]
+                 columns: columIndices
                }
              }, {
                "extend": "pdfHtml5",
@@ -26,7 +30,7 @@ $(document).ready(function() {
                "idText": "pdf",
                pageSize: 'LETTER',
                exportOptions: {
-                  columns: [0,1,2,3]
+                  columns: columIndices
                }
              }, {
                extend: "print",
@@ -35,7 +39,7 @@ $(document).ready(function() {
                "className": "btn btn-dark",
                title: titulo_exportar,           
                exportOptions: {
-                  columns: [0,1,2,3]
+                  columns: columIndices
                }
              },
              {
@@ -45,7 +49,7 @@ $(document).ready(function() {
                "className": "btn btn-dark",
                title: titulo_exportar,           
                exportOptions: {
-                  columns: [0,1,2,3]
+                  columns: columIndices
                }
              },
              {
@@ -55,7 +59,7 @@ $(document).ready(function() {
                "className": "btn btn-dark",
                title: titulo_exportar,           
                exportOptions: {
-                  columns: [0,1,2,3]
+                  columns: columIndices
                }
              },
              {
@@ -65,7 +69,7 @@ $(document).ready(function() {
               "className": "btn btn-dark",
               title: titulo_exportar,           
               exportOptions: {
-                 columns: [0,1,2,3]
+                 columns: columIndices
               }
             },
            ],

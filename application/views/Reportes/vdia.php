@@ -32,9 +32,9 @@
                     </div>
                     <!-- /.card-header -->
                   
-                        <div class="form-group col-2">
+                        <div class="form-group ">
                             <label>Intervalo de Fecha</label>
-                            <div class="input-group">
+                            <div class="input-group" style="width: auto;display: inline-flex;">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text bg-dark"><i
                                     class="fa fa-calendar"></i></span>
@@ -47,7 +47,7 @@
                         </div>
                       
                    
-                    <div class="card-body"><?php //$s = $datos[0]->Total_GE;var_dump($s[0]);?>
+                    <div class="card-body">
                         <table style="width: 100%" id="tb_labor" alin="center"
                             class="table table-bordered  table-hover table-condensed">
                             <thead>
@@ -56,10 +56,10 @@
                                     <th style="width: 5%;">Tipo de Consulta</th>
                                     <!-- <th style="width: 5%;">CMF</th> -->
                                     <th style="width: 5%;">Fecha/Consulta</th>
-                                    <th style="width: 5%;">Cantidad/Paciente</th>   
-                                   <?php foreach ($rango_edades as $key => $rango) {
-                                    echo '<th style="width: 5%;">'.$rango->Rango_edad.'</th>';
-                                   } ?>
+                                    <?php foreach ($rango_edades as $key => $rango) {
+                                        echo '<th style="width: 5%;">'.$rango->Rango_edad.'</th>';
+                                    } ?>
+                                    <th style="width: 5%;">Total</th>   
                                     
                                 </tr>
 
@@ -74,8 +74,19 @@
                                         echo '<td>'.$value->Tipo_consulta.'</td>';
                                         /* echo '<td>'.$value->Tipo_consulta.'</td>'; */
                                         echo '<td>'.$value->Fecha_consulta.'</td>';
+                                        foreach ($rango_edades as $key => $rango) {$controlValor=false;
+                                            foreach ($value->Total_GE as $key => $x) {
+                                                # code...
+                                                if ($rango->id_grupo_edad == $x->id_ge) {
+                                                    echo '<td>'.$x->cantidad.'</td>';
+                                                    $controlValor=true;
+                                                }
+                                            }
+                                            if(!$controlValor)
+                                            { echo '<td>0</td>';}
+                                            
+                                        }                                  
                                         echo '<td>'.$value->Total_Atendido.'</td>';
-                                                                            
                                         echo '</tr>';
                                     }
                                 ?>

@@ -53,20 +53,11 @@ class reporte_m extends Main_Model
 			if ($u->Fecha_consulta == $value->Fecha_consulta && $u->Tipo_consulta == $value->Tipo_consulta) {
 				$sumaTotal += intval( $value->Cantidad_paciente);
 				$identificador=md5($value->consult.$value->ci_medico.$value->Fecha_consulta.$value->Tipo_consulta);
-				$num=$this->cant_m->List_Valor_X($identificador);
-				
-				array_push($sumaTotalGE,$num);
-			}
-			#if (condition) {
-				# code...
-			#}
+				array_push($sumaTotalGE,"'".$identificador."'");
+			}			
 		}	
-		#foreach ($sumaTotalGE as $key => $value) {
-		#	# code...
-		#	foreach ($value as $key => $val) {
-		#		# code...
-		#	}
-		#}	
+		
+		$sumaTotalGE=$this->cant_m->List_Valor_X($sumaTotalGE);
 		$h1['Total_Atendido'] = $sumaTotal;	 
 		$h1['Total_GE'] = $sumaTotalGE;	 
 		

@@ -24,11 +24,11 @@ class cant_m extends Main_Model
 		return (count($resultado)) ? $resultado[0]->cant_x_ge : 0 ;	
 	}
 	public function List_Valor_X($identificador)
-	{
-		$this->db->select('*');
+	{ 
+		$this->db->select('SUM(cant_x_ge) as cantidad,id_ge');
 		$this->db->from($this->tabla_name);
-		$this->db->where('identificador',$identificador);
-		
+		$this->db->where_in('identificador',$identificador,false);		
+		$this->db->group_by('id_ge');	
 		
 		$s = $this->db->get();		
 		$resultado = $s->result();
@@ -79,8 +79,7 @@ class cant_m extends Main_Model
 		foreach ($param as $key => $value) {
 			# code...
 			$datos_comprobar['identificador']= $value['identificador'];
-			$datos_comprobar['id_ge']=$value['id_ge'];
-			$datos_comprobar['id_x']=$value['id_x'];
+			$datos_comprobar['id_ge']=$value['id_ge'];			
 			$datos_comprobar['cant_x_ge']=$value['cant_x_ge'];
 			if($this->SiExiste($datos_comprobar)){
 				$this->db->where('identificador', $value['identificador']);

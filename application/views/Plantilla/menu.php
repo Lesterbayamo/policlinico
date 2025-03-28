@@ -88,11 +88,7 @@
         </li> -->
         <li><a class="drop" href="#">Reportes</a>
           <ul>
-          <li><a href="<?php echo base_url();?>Consultas-diarias-por-especialidad">Consultas diarias por especialidad</a></li>
-            <li><a href="<?php echo base_url();?>creporte/dia_10">Consultas cada 10 días por especialidad</a></li>           
-            <li><a href="<?php echo base_url();?>creporte/dia_20">Consultas cada 20 días por especialidad</a></li>
-            <li><a href="<?php echo base_url();?>creporte/dia_30">Consultas mensuales por especialidad</a></li>   
-            <li><a href="<?php echo base_url();?>creporte/dia_364">Consultas anuales por especialidad</a></li>   
+          <li><a href="<?php echo base_url();?>Consultas-diarias-por-especialidad">Consultas por especialidad</a></li>              
           </ul>
         </li>
         <li><a class="drop" href="#"> Administraci&oacute;n</a>
