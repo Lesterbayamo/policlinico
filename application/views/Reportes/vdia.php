@@ -32,7 +32,7 @@
                     </div>
                     <!-- /.card-header -->
                   
-                        <div class="form-group ">
+                        <div class="form-group " style="margin-left: 15px;">
                             <label>Intervalo de Fecha</label>
                             <div class="input-group" style="width: auto;display: inline-flex;">
                                 <div class="input-group-prepend">

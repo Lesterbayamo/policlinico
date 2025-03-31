@@ -48,7 +48,7 @@ class labor_m extends Main_Model
 		$h1['ci_medico'] = $u->ci_medico;	 			 
 		$h1['Fecha_consulta'] = $u->Fecha_consulta;	 			 
 		$h1['medico'] = $u->medico;	 			 
-		$h1['Nombre_cm'] = $u->Nombre_cm;
+		$h1['Nombre_cm'] = ($u->Nombre_cm)?$u->Nombre_cm:'-';
 		$h1['id_especialidad'] =null;
 		$h1['Cantidad_paciente'] = $u->Cantidad_paciente;
 		if($vista !="1"){
