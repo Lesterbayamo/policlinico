@@ -13,19 +13,20 @@ class reporte_m extends Main_Model
 
 	
     
-	public function List_Diario($rangoFecha)
+	public function List_Diario($rangoFecha,$tipo,$consultorio)
 	{		
-		$fechas = explode("-",$rangoFecha);//return $fechas;
+		$fechas = explode("-",$rangoFecha);//return $fechas; 
 		$this->db->select('*');
 		$this->db->from($this->tabla_name);
 		$this->db->join('table_medico','table_consultorio_medico_has_table_medico.Table_MEDICO_ci_medico=table_medico.ci_medico');
-		$this->db->join('table_consultorio_medico','table_consultorio_medico_has_table_medico.Table_CONSULTORIO_MEDICO_id_consultorio_medico=table_consultorio_medico.id_consultorio_medico','LEFT');
+		$this->db->join('table_consultorio_medico','table_consultorio_medico_has_table_medico.Table_CONSULTORIO_MEDICO_id_consultorio_medico=table_consultorio_medico.id_consultorio_medico',$tipo);
 		$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad');
 		$this->db->where('Fecha_consulta >= ',$fechas[0]);		
 		$this->db->where('Fecha_consulta <= ',$fechas[1]);		
+		if($consultorio){$this->db->where('table_consultorio_medico_has_table_medico',$consultorio);}		
 		$this->db->group_by('Fecha_consulta');		
 		$this->db->group_by('Nombre_esp');		
-		$this->db->group_by('Tipo_consulta');		
+		$this->db->group_by('Tipo_consulta');
 		$this->db->order_by('Fecha_consulta','ASC');		
 		$this->db->order_by('Nombre_esp','ASC');		
 		$this->db->order_by('Tipo_consulta','ASC');		

@@ -5,9 +5,9 @@
         <div class="row mb-2">
             <div class="col-sm-10">
                 <b>
-                    <h1> Consultas por especialidad</h1>
+                    <h1> Consultas por consultorio</h1>
                 </b>
-                <input type="hidden" name="dir" id="dir" value="especialidad">
+                <input type="hidden" name="dir" id="dir" value="consultorio">
             </div>
             <div class="col-sm-2">
                 <ol class="breadcrumb float-sm-right">
@@ -29,7 +29,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-success">
-                        <spam id="titulo_exportar">Reporte de las consultas por especialidad.</spam>
+                        <spam id="titulo_exportar">Reporte de las consultas por consultorio.</spam>
                     </div>
                     <!-- /.card-header -->
                   
@@ -47,7 +47,19 @@
                             <!-- /.input group -->
                         </div>
                       
-                   
+                        <div class="form-group" style="margin-left: 15px;">
+                            <label>Consultorio</label>
+                            <div class="input-group col-2" style="margin-left: -5px;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-dark"><i
+                                            class="fas fa-spell-check"></i></span>
+                                </div>
+                                <select class="select2" style="width: 75%" id="consultorio"
+                                    name="consultorio" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                        </div>
                     <div class="card-body">
                         <table style="width: 100%" id="tb_labor" alin="center"
                             class="table table-bordered  table-hover table-condensed">

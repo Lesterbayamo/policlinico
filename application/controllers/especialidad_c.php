@@ -41,7 +41,8 @@ class especialidad_c extends Main_Controller
 	
 	public function Add(){
 		$param['Nombre_esp'] = trim($this->input->post('nombre_especialidad_add'));	
-		$param['Descripcion_esp'] = trim($this->input->post('descripcion_add'));		
+		$param['Descripcion_esp'] = trim($this->input->post('descripcion_add'));	
+		$param['Siglas_esp'] =trim($this->input->post('abreviatura_add'));		
 		$result = $this->especialidad_m->Add($param);
 		($result) ? $this->mensaje('success', 'Datos agregados con éxito'):$this->mensaje('error', 'Error, no se pudo agregar los datos');
 		$this->Redirect();	

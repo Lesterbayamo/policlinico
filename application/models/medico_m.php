@@ -16,7 +16,7 @@ class medico_m extends Main_Model
 		$this->load->model('pronostico_m');
 	   foreach ($re  as $key => $u) {
 		$h1['id_especialidad'] = $u->id_especialidad;	 
-		$h1['Nombre_esp'] = ($u->Nombre_esp)?$u->Nombre_esp:"";	 
+		$h1['Nombre_esp'] = ($u->Nombre_esp)?$u->Nombre_esp:"-";	 
 		$h1['medico'] = $u->medico;	 
 		$h1['Siglas_esp'] = $u->Siglas_esp;	 
 		$h1['Descripcion_esp'] = $u->Descripcion_esp;	 
@@ -35,7 +35,7 @@ class medico_m extends Main_Model
 			
 			#$h1['edades'] = implode(',',$h_pronostico);	 
 			$h1['Pronostico'] = implode(', ',$h_pronostico);	 
-		
+			$h1['Pronostico'] = ($h1['Pronostico']) ? $h1['Pronostico'] : '-' ;
 		$obj = (object) $h1;
 		array_push($h, $obj);
 	   }

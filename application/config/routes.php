@@ -66,4 +66,5 @@ $route['Labor_Medico'] = 'labor_c/inicio_950124';
 $route['Labor_Medico/(:num)'] = 'labor_c/inicio_950124/$1';
 $route['Medico'] = 'medico_c/inicio_950124';
 $route['Consultas-diarias-por-especialidad'] = 'reporte_c/inicio_diario';
+$route['Consultas-diarias-por-consultorio'] = 'reporte_c/inicio_consultorio';
 $route['Relacionar-grupo-de-edad-con-especialidad/(:num)'] = 'ge_esp_c/inicio_950124/$1';

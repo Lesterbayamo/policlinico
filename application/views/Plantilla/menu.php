@@ -79,16 +79,11 @@
             <li><a href="<?php echo base_url();?>Consultorio">Consultorios</a></li>
             <li><a   href="<?php echo base_url();?>Grupo_Trabajo">Grupos de Trabajo</a></li>        
           </ul>
-        </li>
-        <!-- <li><a class="drop" href="#">Producci&oacute;n</a>
-          <ul>
-          <li><a href="<?php echo base_url();?>cvale">Vales de Campo</a></li>
-            <li><a   href="<?php echo base_url();?>creportebascula">Reportes de B&aacute;scula</a></li>            
-          </ul>
-        </li> -->
+        </li>        
         <li><a class="drop" href="#">Reportes</a>
           <ul>
           <li><a href="<?php echo base_url();?>Consultas-diarias-por-especialidad">Consultas por especialidad</a></li>              
+          <li><a href="<?php echo base_url();?>Consultas-diarias-por-consultorio">Consultas por consultorio</a></li>              
           </ul>
         </li>
         <li><a class="drop" href="#"> Administraci&oacute;n</a>

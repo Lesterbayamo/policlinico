@@ -108,7 +108,8 @@ $(document).ready(function() {
     { 
        $('#id_delete').val(id);
     };
-   
+
+    
    
 //Listar en el combo Medico
 $.post(baseurl + "medico_c/List",
@@ -133,3 +134,4 @@ $.post(baseurl + "consultorio_c/List",
     });
   }); 
    
+ 

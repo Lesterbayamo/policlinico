@@ -77,16 +77,16 @@
 </section>
 <!-- /.content -->
 
-<!-- Main content -->
-<section class="content">
+<!-- No se usa de momento -->
+<section hidden class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <!-- Box Comment -->
         <br><br>
-        <h4 hidden><b>La Cooperativa de Cr&eacute;ditos y Servicios (CCS) M&aacute;rtires del Cauto, R&iacute;o Cauto est&aacute; dedicada a la producci&oacute;n  de arroz, carne vacuna y leche como su tarea econ&oacute;mica fundamental.</h4><br>          
+        <h4><b>La Cooperativa de Cr&eacute;ditos y Servicios (CCS) M&aacute;rtires del Cauto, R&iacute;o Cauto est&aacute; dedicada a la producci&oacute;n  de arroz, carne vacuna y leche como su tarea econ&oacute;mica fundamental.</h4><br>          
         <br>
-        <div class="hidden card card-widget">
+        <div class="card card-widget">
           <div class="card-header bg-success">                        
               <span class="username"><b> Estado campaña actual.  </b></span>        
             <div class="card-tools">                  

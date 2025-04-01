@@ -191,6 +191,9 @@ $(function() {
 <?php if($this->uri->segment(1)=='Consultas-diarias-por-especialidad') {?>
 <script src="<?= base_url();?>js/reporte_dia.js"></script>
 <?php }?>
+<?php if($this->uri->segment(1)=='Consultas-diarias-por-consultorio') {?>
+<script src="<?= base_url();?>js/reporte_consultorio.js"></script>
+<?php }?>
 <?php if($this->uri->segment(1)=='Relacionar-grupo-de-edad-con-especialidad') {?>
 <script src="<?= base_url();?>js/ge_esp.js"></script>
 <?php }?>
@@ -280,20 +283,21 @@ $(function() {
         }
     )
     $('#daterange-btn').change(mensaje);
-    function mensaje() {
-       var formulario = document.createElement('form');
-       formulario.id='form_dinamico';
-       formulario.method='POST';
-       formulario.action=baseurl+'Consultas-diarias-por-especialidad';
-       const input = document.createElement('input');
-       input.value=$('#daterange-btn').val();
-       input.hidden='true';
-       input.name='fecha';
-       formulario.append(input);
-       document.body.appendChild(formulario);
-       formulario.submit();
+  function mensaje() {
+    var formulario = document.createElement('form');
+    formulario.id='form_dinamico';
+    formulario.method='POST';
+    formulario.action=baseurl+'Consultas-diarias-por-'+$('#dir').val();
+    const input = document.createElement('input');
+    input.value=$('#daterange-btn').val();
+    input.hidden='true';
+    input.name='fecha';
+    formulario.append(input);
+    document.body.appendChild(formulario);
+    formulario.submit();
+ }
 
-    }
+    
     //Timepicker
     $('#timepicker').datetimepicker({
         format: 'LT'
