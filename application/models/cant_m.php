@@ -89,8 +89,11 @@ class cant_m extends Main_Model
 					$retVal = true;
 				}
 			}else {
-				$this->db->insert($this->tabla_name, $datos_comprobar);
-				$retVal = true;
+				if ($datos_comprobar['id_ge']!=0) {
+					# code...
+					$this->db->insert($this->tabla_name, $datos_comprobar);
+					$retVal = true;
+				}
 			}		
 			
 		}

@@ -23,7 +23,7 @@ class reporte_m extends Main_Model
 		$this->db->join('table_especialidad','table_medico.Table_ESPECIALIDAD_id_especialidad=table_especialidad.id_especialidad');
 		$this->db->where('Fecha_consulta >= ',$fechas[0]);		
 		$this->db->where('Fecha_consulta <= ',$fechas[1]);		
-		if($consultorio){$this->db->where('table_consultorio_medico_has_table_medico',$consultorio);}		
+		if($consultorio){$this->db->where('Table_CONSULTORIO_MEDICO_id_consultorio_medico',$consultorio);}		
 		$this->db->group_by('Fecha_consulta');		
 		$this->db->group_by('Nombre_esp');		
 		$this->db->group_by('Tipo_consulta');
@@ -45,6 +45,7 @@ class reporte_m extends Main_Model
 		
 	   foreach ($re  as $key => $u) {
 		$h1['Tipo_consulta'] = $u->Tipo_consulta;	 
+		$h1['consultorio'] = $u->Nombre_cm;	 
 		$h1['Nombre_esp'] = $u->Nombre_esp;	 
 		$h1['Fecha_consulta'] = $u->Fecha_consulta;	 
 		$sumaTotal=0;

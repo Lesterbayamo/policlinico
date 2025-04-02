@@ -1,6 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function() {console.log(valorConsultorio);
+
   var titulo_exportar = document.getElementById('titulo_exportar').textContent;
-  titulo_exportar = titulo_exportar+" En el periodo: "+ $('#daterange-btn').val();
+  var consl = (valorConsultorio)?" "+nombreConsultorio+". ":".";
+  titulo_exportar = titulo_exportar+consl+" En el periodo: "+ $('#daterange-btn').val();
   var totalColumnas = $('#tb_labor thead th').length;
   var columIndices = Array.from({length: totalColumnas},(_,i)=>i);
 
@@ -74,7 +76,7 @@ $(document).ready(function() {
             },
            ],
       
-        "order": [[3, "desc"]],  
+        "order": [[2, "asc"],[0, "asc"],[1, "asc"]],  
     }
     $('#tb_labor').DataTable(objeto_tabla);
     $('[title ="Exportar a Excel"]').tooltip();
@@ -112,26 +114,13 @@ $(document).ready(function() {
     
    
 //Listar en el combo Medico
-$.post(baseurl + "medico_c/List",
-  function (data) {
-    var c = JSON.parse(data);     
-    $.each(c, function (i, item) {
-      $('#medico_add').append(`<option value="${item.ci_medico}"> ${item.medico} - ${item.Nombre_esp}</option>`);
-      //$('#medico_add').append('<option value="' + item.ci_medico + '">' + item.medico + '</option>');          
-    
-    });
-  }); 
-
-    
-//Listar en el combo Consultorio
 $.post(baseurl + "consultorio_c/List",
   function (data) {
     var c = JSON.parse(data);     
     $.each(c, function (i, item) {
-      $('#consultorio_add').append(`<option value="${item.id_consultorio_medico}"> ${item.Nombre_gt} - ${item.Nombre_cm}</option>`);
-      //$('#medico_add').append('<option value="' + item.ci_medico + '">' + item.medico + '</option>');          
-    
+      var selected =(valorConsultorio==item.id_consultorio_medico)?"selected":"";
+     $('#consultorio').append(`<option ${selected} value="${item.id_consultorio_medico	}"> ${item.Nombre_gt} - ${item.Nombre_cm}</option>`);
     });
   }); 
-   
- 
+
+  

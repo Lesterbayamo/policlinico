@@ -283,6 +283,7 @@ $(function() {
         }
     )
     $('#daterange-btn').change(mensaje);
+    $('#consultorio').change(mensaje);
   function mensaje() {
     var formulario = document.createElement('form');
     formulario.id='form_dinamico';
@@ -293,6 +294,12 @@ $(function() {
     input.hidden='true';
     input.name='fecha';
     formulario.append(input);
+
+    const input_consultorio = document.createElement('input');
+    input_consultorio.value=$('#consultorio').val();
+    input_consultorio.hidden='true';
+    input_consultorio.name='consultorio';
+    formulario.append(input_consultorio);
     document.body.appendChild(formulario);
     formulario.submit();
  }

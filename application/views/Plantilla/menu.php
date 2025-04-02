@@ -67,13 +67,14 @@
         <li><a class="drop" href="#">Especialidades</a>
           <ul>
             <li><a href="<?php echo base_url();?>Especialidades">Especialidades</a></li>             
-          </ul>
-        </li>
-        <li><a class="drop" href="#">Grupos de Edades</a>
-          <ul>
             <li><a   href="<?php echo base_url();?>Grupo_Edades">Grupos de Edades</a></li>        
           </ul>
         </li>
+        <!-- <li><a class="drop" href="#">Grupos de Edades</a>
+          <ul>
+            <li><a   href="<?php echo base_url();?>Grupo_Edades">Grupos de Edades</a></li>        
+          </ul>
+        </li> -->
         <li><a class="drop" href="#">Consultorios</a>
           <ul>
             <li><a href="<?php echo base_url();?>Consultorio">Consultorios</a></li>
@@ -84,9 +85,10 @@
           <ul>
           <li><a href="<?php echo base_url();?>Consultas-diarias-por-especialidad">Consultas por especialidad</a></li>              
           <li><a href="<?php echo base_url();?>Consultas-diarias-por-consultorio">Consultas por consultorio</a></li>              
+          <li><a href="<?php echo base_url();?>Cumplimiento-pronostico-mensual">Cumplimiento pronostico mensual</a></li>              
           </ul>
         </li>
-        <li><a class="drop" href="#"> Administraci&oacute;n</a>
+        <li><a class="drop" href="#"> Administración</a>
           <ul>
             <li><a href="<?php echo base_url();?>Usuario">Usuario</a></li>            
           </ul>

@@ -8,7 +8,8 @@ class reporte_c extends Main_Controller
 	{
 		parent::__construct();
 		$this->load->model('reporte_m');		
-		$this->load->model('edades_m');		
+		#$this->load->model('edades_m');		
+		$this->load->model('consultorio_m');		
 		$this->data_general['_redirect']='reporte_Medico';
 	}
    
@@ -43,13 +44,15 @@ class reporte_c extends Main_Controller
 			}
 			if($this->input->post('consultorio'))
 			{
-				$fecha = $this->input->post('consultorio');				
+				$consultorio = $this->input->post('consultorio');				
 			}else {
 				$consultorio='';
 			}
 			$param['datos'] = $this->List_Diario($fecha,'INNER',$consultorio);			
 			$param['rango_edades'] = $this->edades_m->List();			
 			$param['valorFecha'] =$this->input->post('fecha');			
+			$param['valorConsultorio'] =$this->input->post('consultorio');			
+			$param['nombreConsultorio'] =	$this->consultorio_m->List($param['valorConsultorio']);		
 			$this->Cargar_Plantilla('Reportes/vconsultorio',$param);		
 		} else{
 			if($this->ControlConexion()){
@@ -58,7 +61,17 @@ class reporte_c extends Main_Controller
 			else{redirect(base_url());}
 		}
 	}
-	
+	public function inicio_cumplimiento()		
+	{  
+		if($this->ControlAcceso()){				
+			$this->Cargar_Plantilla('Reportes/vcumplimiento');		
+		} else{
+			if($this->ControlConexion()){
+				$this->No_Tiene_Permiso();
+			} 
+			else{redirect(base_url());}
+		}
+	}
 	public function List_Diario($fecha,$tipo='LEFT',$consultorio='')
 	{		
 		return $this->reporte_m->List_Diario($fecha,$tipo,$consultorio);
