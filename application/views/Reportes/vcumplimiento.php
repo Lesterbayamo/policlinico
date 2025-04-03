@@ -29,12 +29,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header bg-success">
-                        Listado de Médicos
+                    Reporte de cumplimiento del pronóstico de los medicos
                     </div>
                     <!-- /.card-header -->
 
                     <div class="card-body">
-                        <table style="width: 100%" id="tb_medico" alin="center"
+                        <table style="width: 100%" id="tb_cumplimiento" alin="center"
                             class="table table-bordered  table-hover table-condensed">
                             <thead>
                                 <tr>
@@ -43,6 +43,7 @@
                                     <th style="width: 10%;">Especialidad</th>
                                     <th style="width: 10%;">Pronóstico</th>                                    
                                     <th style="width: 10%;">Cumplimiento</th>                                   
+                                    <th style="width: 10%;">% Cumplimiento</th>                                   
                                 </tr>
 
                             </thead>
@@ -64,10 +65,3 @@
     <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-
-
-
-
-
-
-

@@ -7,6 +7,7 @@ class reporte_m extends Main_Model
 		parent::__construct();	
 		$this->load->model('labor_m');
 		$this->load->model('edades_m');
+		$this->load->model('medico_m');
 		$this->load->model('cant_m');
 		$this->tabla_name='table_consultorio_medico_has_table_medico';
 	}
@@ -79,8 +80,38 @@ class reporte_m extends Main_Model
 	}
 	
 	
-		
+	public function List_Cumplimiento($mes_anno,$fechaRango){
+		$datos = $this->medico_m->List($mes_anno);
+
+		return $this->makeData_List_Cumplimiento($datos,$fechaRango);
+	}	
 	
- 
+	private function makeData_List_Cumplimiento($re,$fechaRango)
+	{		
+	   $h = array();   
+		
+	   $fechas = explode("-",$fechaRango);
+	   foreach ($re  as $key => $u) {		 
+		$h1['Nombre_esp'] = $u->Nombre_esp;	 
+		$h1['medico'] = $u->medico;			 
+		$h1['ci_medico'] = $u->ci_medico;	 
+		$h1['Pronostico'] = $u->Cantidad_Pronostico;	 
+			 
+		if ($h1['Pronostico']!='-') {
+			if ($u->Nombre_esp == '-') {
+				# code...
+				$cant=$this->labor_m->Labor_List_Cumplimiento($u->ci_medico,$fechas);
+			}else {
+				# code...
+				$cant=$this->labor_m->List_X_Medico($fechas,$u->ci_medico);
+			}
+			$h1['Cumplimiento'] = $cant;
+			$h1['Porciento_Cumplimiento'] =round(intval($cant)*100/intval($u->Cantidad_Pronostico),2);
+			$obj = (object) $h1;
+			array_push($h, $obj);			
+		} 
+	   }
+	   return $h;
+	}
  
 }

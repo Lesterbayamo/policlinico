@@ -185,6 +185,9 @@ $(function() {
 <?php if($this->uri->segment(1)=='Medico') {?>
 <script src="<?= base_url();?>js/medico.js"></script>
 <?php }?>
+<?php if($this->uri->segment(1)=='Cumplimiento-pronostico-mensual') {?>
+<script src="<?= base_url();?>js/cumplimiento.js"></script>
+<?php }?>
 <?php if($this->uri->segment(1)=='Labor_Medico') {?>
 <script src="<?= base_url();?>js/labor.js"></script>
 <?php }?>

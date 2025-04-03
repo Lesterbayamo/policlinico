@@ -24,11 +24,12 @@ class medico_m extends Main_Model
 		$h1['Nombre_medico'] = $u->Nombre_medico;	 
 		$h1['Apellido_medico'] = $u->Apellido_medico;	 
 		$h1['Telefono_medico'] = $u->Telefono_medico;	 
+		$h1['Cantidad_Pronostico'] = 0;	 
 		
 		$pronostico = $this->pronostico_m->List($u->ci_medico,$mes_anno);
 		$h_pronostico = array();
 		foreach ($pronostico as $key => $val) {
-			#	# code...
+			$h1['Cantidad_Pronostico'] = $h1['Cantidad_Pronostico']+intval($val->cantidad);
 			$tipo = ($val->tipo == "Policlinico")? "Policlínico":"Terreno";
 			  array_push($h_pronostico,$tipo." : ".$val->cantidad);
 			}

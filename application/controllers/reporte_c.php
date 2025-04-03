@@ -62,7 +62,7 @@ class reporte_c extends Main_Controller
 		}
 	}
 	public function inicio_cumplimiento()		
-	{  
+	{  		
 		if($this->ControlAcceso()){				
 			$this->Cargar_Plantilla('Reportes/vcumplimiento');		
 		} else{
@@ -79,6 +79,10 @@ class reporte_c extends Main_Controller
 	public function Grafica_Portada()
 	{		
 		echo json_encode($this->edades_m->List());
+	}
+	public function List_Cumplimiento()
+	{		
+		echo json_encode($this->reporte_m->List_Cumplimiento($this->Anno_Mes_Actual(),$this->fechaHoyMod()));
 	}
 	
 }
