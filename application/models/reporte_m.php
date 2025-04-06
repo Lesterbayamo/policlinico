@@ -105,7 +105,7 @@ class reporte_m extends Main_Model
 				# code...
 				$cant=$this->labor_m->List_X_Medico($fechas,$u->ci_medico);
 			}
-			$h1['Cumplimiento'] = $cant;
+			$h1['Cumplimiento'] = ($cant)?$cant:0;
 			$h1['Porciento_Cumplimiento'] =round(intval($cant)*100/intval($u->Cantidad_Pronostico),2);
 			$obj = (object) $h1;
 			array_push($h, $obj);			

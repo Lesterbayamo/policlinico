@@ -166,7 +166,9 @@ $(function() {
     $['data-toggle = "tooltip"'].tooltip();
 })
 </script>
-
+<?php if($this->uri->segment(1)=='Inicio') {?>
+<script src="<?= base_url();?>js/grafica.js"></script>
+<?php }?>
 <?php if($this->uri->segment(1)=='Usuario') {?>
 <script src="<?= base_url();?>js/usuario.js"></script>
 <?php }?>

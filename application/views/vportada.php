@@ -212,3 +212,58 @@
   </div><!-- /.container-fluid -->
 </section>
 <!-- /.content --> 
+
+<!-- Main content -->
+<section class="content-header">  
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header no-border">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Labor de los medicos en el mes. <a href="Cumplimiento-pronostico-mensual">>> Ver Tabla</a></h3>                 
+                </div>
+               </div>
+             
+
+                <div class="position-relative mb4">
+                  <canvas id="grafico" height="80"></canvas>
+                </div>
+
+               
+              </div>
+            </div>
+            <!-- /.card -->
+            <div class="col-lg-6 hidden">
+            <div class="card">
+              <div class="card-header no-border">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">CAMPAÑAS ESTACI&Oacute;N: PRIMAVERA</h3>                 
+                </div>
+               </div>
+             
+
+                <div class="position-relative mb4">
+                  <canvas id="grafico2" height="260"></canvas>
+                </div>
+
+               
+              </div>
+            </div>
+            <!-- /.card -->
+          
+          </div>
+          
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+</section>
+
+
+
+
