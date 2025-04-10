@@ -84,7 +84,7 @@ $(document).ready(function() {
           "orderable": false,
           render: function(data, type, row)
           {
-            if(nivel_acceso == "Administrador"){ 
+            if(nivel_acceso == "Administrador" || nivel_acceso=="Especialista"){ 
             return '<a href="#" class="btn btn-block btn-danger btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Del" title="Eliminar" onClick="EliminarRegistro(\''+row.id_especialidad+'\');"><i class="fa  fa-trash"></i></a>';  
             }
             else{

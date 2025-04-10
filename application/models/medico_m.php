@@ -43,13 +43,18 @@ class medico_m extends Main_Model
 	   return $h;
 	}
     
-	public function List($mes_anno,$id=0,$campo='fecha_creado',$orden='DESC',$bool=false)
+	public function List($mes_anno,$id=0,$especialidad=0,$consultorios='')
 	{
 		//Retorna todos los registros en caso que no se le pase un id especifico
 		$this->db->select('*,concat(Nombre_medico," ",Apellido_medico) as medico');
 		$this->db->from($this->tabla_name);
 		$this->db->join('table_especialidad','table_especialidad.id_especialidad = table_medico.Table_ESPECIALIDAD_id_especialidad','LEFT');
-		if($id){$this->db->where($this->tabla_id,$id);}
+		if($id){$this->db->where_in($this->tabla_id,$id,false);}
+		#if($consultorios){
+		#	$this->db->join('table_consultorio_medico_has_table_medico','table_consultorio_medico_has_table_medico.Table_MEDICO_ci_medico = table_medico.ci_medico');
+		#	$this->db->where_in('Table_CONSULTORIO_MEDICO_id_consultorio_medico',"'".$consultorios."'",false);
+		#}
+		if($especialidad){$this->db->where('table_especialidad.id_especialidad',$especialidad);}
 		$this->db->order_by('Apellido_medico');
 		$s = $this->db->get();		
 		return $this->makeData($mes_anno,$s->result());

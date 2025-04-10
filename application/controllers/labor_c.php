@@ -15,7 +15,7 @@ class labor_c extends Main_Controller
 	public function inicio_950124($txt)		
 	{  
 		$param['vista']=$txt;
-		if($this->ControlAcceso()){
+		if($this->ControlAcceso('Director,Especialista,Jefe Departamento')){
 			if($txt=='1')
 			{$this->Cargar_Plantilla('Estructura/vlabor_mf',$param);}		
 		elseif($txt=='2')

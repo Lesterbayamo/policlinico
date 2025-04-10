@@ -87,7 +87,7 @@ $(document).ready(function() {
             "orderable": false,
             render: function(data, type, row)
             {
-              if(nivel_acceso == "Administrador"){ 
+              if(nivel_acceso == "Administrador" || nivel_acceso=="Especialista"){ 
               return '<a href="#" class="btn btn-block btn-info btn-xs" style="width: 45px"; data-toggle="modal" data-target="#status" title="Cantidad de consultas por tipo." onClick="PronosticoRegistro(\''+row.ci_medico+'\');"><i class="fa  fa-plus"></i></a>';  
               }
               else{
@@ -100,7 +100,7 @@ $(document).ready(function() {
             
             render: function(data, type, row)                                                                                                                                                                                                                                      
             {
-              if(nivel_acceso=="Administrador"){ 
+              if(nivel_acceso=="Administrador" || nivel_acceso=="Especialista"){ 
               return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.ci_medico+'\',\''+row.Nombre_medico+'\',\''+row.Apellido_medico+'\',\''+row.Telefono_medico+'\',\''+row.id_especialidad+'\');"><i class="fa fa-edit"></i></a>';  
               }
               else{

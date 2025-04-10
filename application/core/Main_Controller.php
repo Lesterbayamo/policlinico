@@ -217,9 +217,10 @@ public function Fecha_Larga(){
 public function TiempoDesconexion(){
   return $this->usuario_m->TiempoDesconexion($this->hoy());	
 } 
-public function ControlAcceso($otro=false){ 
+public function ControlAcceso($otro=''){ 
   $rol = $this->session->userdata('rol');
-  return ($rol=="Administrador"  || $otro) ? true : false  ;
+  $retVal = ($otro) ? strpos(' '.$otro,$rol) : false ;
+  return ($rol=="Administrador"  || $retVal) ? true : false  ;
 }
 public function ControlConexion(){  
   return ($this->session->userdata('rol')) ? true : false  ;

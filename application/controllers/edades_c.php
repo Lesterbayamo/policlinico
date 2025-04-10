@@ -13,7 +13,7 @@ class edades_c extends Main_Controller
    
 	public function inicio_950124()		
 	{  
-		if($this->ControlAcceso()){
+		if($this->ControlAcceso('Director,Especialista,Jefe Departamento')){
 			$this->Cargar_Plantilla('Estructura/vedades');		
 		} else{
 			if($this->ControlConexion()){

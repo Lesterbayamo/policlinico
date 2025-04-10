@@ -104,7 +104,7 @@ $(document).ready(function() {
             
             render: function(data, type, row)                                                                                                                                                                                                                                      
             {
-              if(nivel_acceso=="Administrador"){ 
+              if(nivel_acceso=="Administrador" || nivel_acceso=='Jefe Departamento'){ 
               return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.id_usuario+'\',\''+row.nombre_usuario+'\',\''+row.rol+'\',\''+row.usuario+'\');"><i class="fa fa-edit"></i></a>';  
               }
               else{

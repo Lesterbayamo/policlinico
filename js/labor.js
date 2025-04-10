@@ -96,7 +96,7 @@ $(document).ready(function() {
               
               render: function(data, type, row)                                                                                                                                                                                                                                      
               {
-                if(nivel_acceso=="Administrador"){ 
+                if(nivel_acceso=="Administrador" || nivel_acceso=="Especialista"){ 
                 return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.Tipo_consulta+'\',\''+row.consult+'\',\''+row.ci_medico+'\',\''+row.Nombre_cm+'\',\''+row.Cantidad_paciente+'\',\''+row.Fecha_consulta+'\',\''+row.medico+'\',\''+row.id_especialidad+'\');"><i class="fa fa-edit"></i></a>';  
                 }
                 else{
@@ -198,7 +198,7 @@ $(document).ready(function() {
               
               render: function(data, type, row)                                                                                                                                                                                                                                      
               {
-                if(nivel_acceso=="Administrador"){ 
+                if(nivel_acceso=="Administrador" || nivel_acceso=="Especialista"){ 
                 return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.Tipo_consulta+'\',\''+row.consult+'\',\''+row.ci_medico+'\',\''+row.Nombre_cm+'\',\''+row.Cantidad_paciente+'\',\''+row.Fecha_consulta+'\',\''+row.medico+'\',\''+row.id_especialidad+'\');"><i class="fa fa-edit"></i></a>';  
                 }
                 else{

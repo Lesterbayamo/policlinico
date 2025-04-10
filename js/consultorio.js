@@ -87,7 +87,7 @@ $(document).ready(function() {
             
             render: function(data, type, row)                                                                                                                                                                                                                                      
             {
-              if(nivel_acceso=="Administrador"){ 
+              if(nivel_acceso=="Administrador" || nivel_acceso=="Especialista"){ 
               return '<a href="#" class="btn btn-block btn-warning btn-xs" style="width: 45px"; data-toggle="modal" data-target="#Upd" title="Editar" onClick="Seleccionar(\''+row.id_consultorio_medico+'\',\''+row.Nombre_cm+'\',\''+row.id_grupo_trabajo+'\',\''+row.Direccion_cm+'\');"><i class="fa fa-edit"></i></a>';  
               }
               else{

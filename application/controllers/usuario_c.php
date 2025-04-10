@@ -13,7 +13,7 @@ class usuario_c extends Main_Controller
    
 	public function inicio_950124()		
 	{  
-		if($this->ControlAcceso()){
+		if($this->ControlAcceso('Director,Jefe Departamento')){
 			$this->Cargar_Plantilla('Estructura/vusuario');		
 		} else{
 			if($this->ControlConexion()){

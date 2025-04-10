@@ -7,8 +7,10 @@ class reporte_m extends Main_Model
 		parent::__construct();	
 		$this->load->model('labor_m');
 		$this->load->model('edades_m');
+		$this->load->model('especialidad_m');
 		$this->load->model('medico_m');
 		$this->load->model('cant_m');
+		$this->load->model('trabajo_m');
 		$this->tabla_name='table_consultorio_medico_has_table_medico';
 	}
 
@@ -85,7 +87,41 @@ class reporte_m extends Main_Model
 
 		return $this->makeData_List_Cumplimiento($datos,$fechaRango);
 	}	
-	
+	public function List_Cumplimiento_Especialidad($mes_anno,$fechaRango){
+		 $especialidades = $this->especialidad_m->List();
+		$valores_resultado = array();
+		foreach ($especialidades as $key => $value) {
+			$datos = $this->medico_m->List($mes_anno,0,$value->id_especialidad);
+			# code...
+			array_push($valores_resultado,$this->makeData_List_Cumplimiento_Especialidad($datos,$fechaRango));
+		}
+		return $valores_resultado;
+	}	
+	public function List_Cumplimiento_Grupo_Trabajo($fechaRango){
+		$gt = $this->trabajo_m->List();
+		$fechas = explode("-",$fechaRango);
+	   $valores_resultado = array();
+	   foreach ($gt as $key => $value) {
+		   $consultorios = array();
+		   $datos = $this->consultorio_m->List(0,$value->id_grupo_trabajo);
+		   foreach ($datos as $key => $valor) {
+			   array_push($consultorios,$valor->id_consultorio_medico);
+			}
+		   $h['consultorio'] = implode(',',$consultorios);
+		   $Valores  = $this->labor_m->List(3,$fechas,0,$h['consultorio']);
+		   $suma = 0;
+		   foreach ($Valores as $key => $value_x) {
+			# code...
+			$suma += $value_x->Cantidad_paciente;
+		   }
+		   $h['Cantidad'] = $suma;
+		   $h['Nombre_gt'] = $value->Nombre_gt;
+		   $obj = (object) $h;
+		   array_push($valores_resultado,$obj);
+		   #array_push($valores_resultado,$this->makeData_List_Cumplimiento_Especialidad($datos,$fechaRango));
+	   }
+	   return $valores_resultado;
+   }	
 	private function makeData_List_Cumplimiento($re,$fechaRango)
 	{		
 	   $h = array();   
@@ -112,6 +148,42 @@ class reporte_m extends Main_Model
 		} 
 	   }
 	   return $h;
+	}
+	private function makeData_List_Cumplimiento_Especialidad($re,$fechaRango)
+	{		
+	   $h = array();   
+		
+	   $fechas = explode("-",$fechaRango);
+	   foreach ($re  as $key => $u) {		 
+		$h1['Nombre_esp'] = $u->Nombre_esp;	 
+		$h1['medico'] = $u->medico;			 
+		$h1['ci_medico'] = $u->ci_medico;	 
+		$h1['Pronostico'] = $u->Cantidad_Pronostico;	 
+			 
+		if ($h1['Pronostico']!='-') {
+			if ($u->Nombre_esp == '-') {
+				# code...
+				$cant=$this->labor_m->Labor_List_Cumplimiento($u->ci_medico,$fechas);
+			}else {
+				# code...
+				$cant=$this->labor_m->List_X_Medico($fechas,$u->ci_medico);
+			}
+			$h1['Cumplimiento'] = ($cant)?$cant:0;
+			$h1['Porciento_Cumplimiento'] =round(intval($cant)*100/intval($u->Cantidad_Pronostico),2);
+			$obj = (object) $h1;
+			array_push($h, $obj);			
+		} 
+	   }
+	   $res['Pronostico'] = 0;
+	   $res['Cumplimiento'] = 0;
+	   foreach ($h as $key => $value) {
+		   $res['Pronostico'] += $value->Pronostico;
+		   $res['Cumplimiento'] += $value->Cumplimiento;
+		   $res['Nombre_esp'] = $value->Nombre_esp;		
+		}
+	$res['Porciento_Cumplimiento'] =round(intval($res['Cumplimiento'])*100/intval($res['Pronostico']),2);
+
+	   return (object) $res;
 	}
  
 }

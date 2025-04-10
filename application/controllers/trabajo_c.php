@@ -12,7 +12,7 @@ class trabajo_c extends Main_Controller
 	}   
 	public function inicio_950124()		
 	{  
-		if($this->ControlAcceso()){	$this->Cargar_Plantilla('Estructura/vtrabajo');		
+		if($this->ControlAcceso('Director,Especialista,Jefe Departamento')){	$this->Cargar_Plantilla('Estructura/vtrabajo');		
 		} else{	if($this->ControlConexion()){$this->No_Tiene_Permiso();	} else{redirect(base_url());}		}
 	}	
 	public function List()

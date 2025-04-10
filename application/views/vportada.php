@@ -221,7 +221,7 @@
             <div class="card">
               <div class="card-header no-border">
                 <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Labor de los medicos en el mes. <a href="Cumplimiento-pronostico-mensual">>> Ver Tabla</a></h3>                 
+                  <h3 class="card-title">LABOR DE LOS MEDICOS EN EL MES <a href="Cumplimiento-pronostico-mensual">>> Ver Tabla</a></h3>                 
                 </div>
                </div>
              
@@ -234,17 +234,35 @@
               </div>
             </div>
             <!-- /.card -->
-            <div class="col-lg-6 hidden">
-            <div class="card">
+            <div class="col-lg-6 ">
+             <div class="card">
               <div class="card-header no-border">
                 <div class="d-flex justify-content-between">
-                  <h3 class="card-title">CAMPAÑAS ESTACI&Oacute;N: PRIMAVERA</h3>                 
+                  <h3 class="card-title">LABOR POR ESPECIALIDADES EN EL MES</h3>                 
                 </div>
                </div>
              
 
                 <div class="position-relative mb4">
-                  <canvas id="grafico2" height="260"></canvas>
+                  <canvas id="grafico2" height="80"></canvas>
+                </div>
+
+               
+              </div>
+            </div>
+            <!-- /.card -->
+             <!-- /.card -->
+            <div class="col-lg-6 ">
+             <div class="card">
+              <div class="card-header no-border">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">LABOR POR GRUPOS DE TRABAJO EN EL MES</h3>                 
+                </div>
+               </div>
+             
+
+                <div class="position-relative mb4">
+                  <canvas id="grafico3" height="80"></canvas>
                 </div>
 
                

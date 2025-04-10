@@ -11,13 +11,14 @@ class consultorio_m extends Main_Model
 
 	
     
-	public function List($id=0,$campo='fecha_creado',$orden='DESC',$bool=false)
+	public function List($id=0,$gt=0)
 	{
 		//Retorna todos los registros en caso que no se le pase un id especifico
 		$this->db->select('*');
 		$this->db->from($this->tabla_name);
 		$this->db->join('table_grupo_trabajo','table_grupo_trabajo.id_grupo_trabajo = table_consultorio_medico.Table_GRUPO_TRABAJO_id_grupo_trabajo');
 		if($id){$this->db->where($this->tabla_id,$id);}
+		if($gt){$this->db->where('Table_GRUPO_TRABAJO_id_grupo_trabajo',$gt);}
 		$s = $this->db->get();		
 		return $s->result();
 		

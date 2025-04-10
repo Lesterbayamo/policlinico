@@ -57,8 +57,8 @@ class CLogin extends Main_Controller
 
 	public function CargarPortada()
 	{
-		$retVal = ($this->session->userdata('rol')) ? true : false ;
-		($this->ControlAcceso($retVal)) ? $this->Cargar_Plantilla('vportada') :redirect(base_url().'Autenticacion/0');
+		#$retVal = ($this->session->userdata('rol')) ? true : false ;
+		($this->ControlConexion()) ? $this->Cargar_Plantilla('vportada') :redirect(base_url().'Autenticacion/0');
 		
 	}
     /* public function Grafo_Neto_Mes_Campanna()

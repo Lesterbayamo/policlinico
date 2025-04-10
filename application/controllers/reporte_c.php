@@ -15,7 +15,7 @@ class reporte_c extends Main_Controller
    
 	public function inicio_diario()		
 	{  
-		if($this->ControlAcceso()){
+		if($this->ControlAcceso('Director,Especialista,Jefe Departamento')){
 			if($this->input->post('fecha'))
 			{
 				$fecha = $this->input->post('fecha');				
@@ -35,7 +35,7 @@ class reporte_c extends Main_Controller
 	}
 	public function inicio_consultorio()		
 	{  
-		if($this->ControlAcceso()){
+		if($this->ControlAcceso('Director,Especialista,Jefe Departamento')){
 			if($this->input->post('fecha'))
 			{
 				$fecha = $this->input->post('fecha');				
@@ -63,7 +63,7 @@ class reporte_c extends Main_Controller
 	}
 	public function inicio_cumplimiento()		
 	{  		
-		if($this->ControlAcceso()){				
+		if($this->ControlAcceso('Director,Especialista,Jefe Departamento')){				
 			$this->Cargar_Plantilla('Reportes/vcumplimiento');		
 		} else{
 			if($this->ControlConexion()){
@@ -84,6 +84,14 @@ class reporte_c extends Main_Controller
 	{		
 		echo json_encode($this->reporte_m->List_Cumplimiento($this->Anno_Mes_Actual(),$this->fechaHoyMod()));
 	}
+	public function List_Cumplimiento_Especialidad()
+	{		
+		echo json_encode($this->reporte_m->List_Cumplimiento_Especialidad($this->Anno_Mes_Actual(),$this->fechaHoyMod()));
+	}	
+	public function List_Cumplimiento_Grupo_Trabajo()
+	{		
+		echo json_encode($this->reporte_m->List_Cumplimiento_Grupo_Trabajo($this->fechaHoyMod()));
+	}	
 	
 }
 

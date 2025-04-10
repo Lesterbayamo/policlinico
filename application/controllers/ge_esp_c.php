@@ -15,7 +15,7 @@ class ge_esp_c extends Main_Controller
    
 	public function inicio_950124($id)		
 	{  
-		if($this->ControlAcceso()){			
+		if($this->ControlAcceso('Director,Especialista,Jefe Departamento')){			
 			$datos['id']=$id;
 			$val=$this->edades_m->List(0,$id);
 			$datos['rango']=$val[0]->Rango_edad;

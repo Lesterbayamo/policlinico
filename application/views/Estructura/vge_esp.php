@@ -12,7 +12,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <?php 
 
-if($this->session->userdata('rol')=="Administrador")
+if($this->session->userdata('rol')=="Administrador" || $this->session->userdata('rol')=="Especialista")
 {            
    echo  "<button style='width: 35px' class='btn btn-block btn-success btn-xs'  data-toggle='modal' data-target='#Add' ><i class='fas fa-plus'></i></button> ";
 }  ?>
