@@ -93,6 +93,7 @@ class reporte_m extends Main_Model
 		foreach ($especialidades as $key => $value) {
 			$datos = $this->medico_m->List($mes_anno,0,$value->id_especialidad);
 			# code...
+			if(count($datos))			
 			array_push($valores_resultado,$this->makeData_List_Cumplimiento_Especialidad($datos,$fechaRango));
 		}
 		return $valores_resultado;
@@ -181,7 +182,7 @@ class reporte_m extends Main_Model
 		   $res['Cumplimiento'] += $value->Cumplimiento;
 		   $res['Nombre_esp'] = $value->Nombre_esp;		
 		}
-	$res['Porciento_Cumplimiento'] =round(intval($res['Cumplimiento'])*100/intval($res['Pronostico']),2);
+		$res['Porciento_Cumplimiento'] =round(intval($res['Cumplimiento'])*100/intval($res['Pronostico']),2);
 
 	   return (object) $res;
 	}
