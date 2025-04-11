@@ -109,13 +109,14 @@ class reporte_m extends Main_Model
 			   array_push($consultorios,$valor->id_consultorio_medico);
 			}
 		   $h['consultorio'] = implode(',',$consultorios);
-		   $Valores  = $this->labor_m->List(3,$fechas,0,$h['consultorio']);
+		   $Valores  = $this->labor_m->List(3,$fechas,0,$consultorios);
 		   $suma = 0;
 		   foreach ($Valores as $key => $value_x) {
 			# code...
 			$suma += $value_x->Cantidad_paciente;
 		   }
 		   $h['Cantidad'] = $suma;
+		   $h['Val'] = $Valores;
 		   $h['Nombre_gt'] = $value->Nombre_gt;
 		   $obj = (object) $h;
 		   array_push($valores_resultado,$obj);
