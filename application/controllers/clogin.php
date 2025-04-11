@@ -37,7 +37,7 @@ class CLogin extends Main_Controller
 		$usu = $this->input->post('xUsuario');
 		$pass = md5($this->input->post('xPassword'));
 		
-		$res = $this->mlogin->Ingresar($usu, $pass);
+		$res = $this->mlogin->Ingresar($usu, $pass,$this->hoy());
        # var_dump($res);return;
 		if($res == 1)
 		{			

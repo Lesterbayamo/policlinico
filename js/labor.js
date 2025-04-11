@@ -290,6 +290,7 @@ $.post(baseurl + "medico_c/List_Labor",{num:vista},
   function (data) {
     var c = JSON.parse(data);     
     $.each(c, function (i, item) {
+      if(item.Pronostico !='-')
       $('#medico_add').append(`<option value="${item.ci_medico}"> ${item.medico} ${item.Nombre_esp}</option>`);                 
     });
   }); 

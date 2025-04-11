@@ -86,19 +86,19 @@ class medico_m extends Main_Model
 		{$h1['Nombre_esp'] = "";}	 
 		$h1['medico'] = $u->medico;	 		 
 		$h1['ci_medico'] = $u->ci_medico;
-		/* $pronostico = $this->pronostico_m->List($u->ci_medico,$mes_anno);
+		 $pronostico = $this->pronostico_m->List($u->ci_medico,$mes_anno);
 		$h_pronostico = array();
 		foreach ($pronostico as $key => $val) {
 			#	# code...
 			$tipo = ($val->tipo == "Policlinico")? "Policlínico":"Terreno";
 			  array_push($h_pronostico,$tipo." : ".$val->cantidad);
-			} */
+			}
 			
 			#$h1['edades'] = implode(',',$h_pronostico);	 
 			#$h1['Pronostico'] = implode(', ',$h_pronostico);	 
 		
 		$obj = (object) $h1;
-		#if(count($h_pronostico))
+		if(count($h_pronostico))
 		array_push($h, $obj);
 	   }
 	   return $h;

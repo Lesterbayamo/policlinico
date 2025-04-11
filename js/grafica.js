@@ -100,12 +100,12 @@ $.ajax({
 
 
     for (var i in datos_campanna) {
-      
+      if(datos_campanna[i].Nombre_esp){
         label_medico_nombre.push(datos_campanna[i].Nombre_esp);
         pronostico.push(datos_campanna[i].Pronostico);
         cumplimiento.push(datos_campanna[i].Cumplimiento);
         porciento_Cumplimiento.push(datos_campanna[i].Porciento_Cumplimiento);
-     
+     }
     }
 
 

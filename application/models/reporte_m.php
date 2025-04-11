@@ -182,8 +182,9 @@ class reporte_m extends Main_Model
 		   $res['Cumplimiento'] += $value->Cumplimiento;
 		   $res['Nombre_esp'] = $value->Nombre_esp;		
 		}
+		if(intval($res['Pronostico'])>0)
 		$res['Porciento_Cumplimiento'] =round(intval($res['Cumplimiento'])*100/intval($res['Pronostico']),2);
-
+		else $res['Porciento_Cumplimiento'] = 0;
 	   return (object) $res;
 	}
  

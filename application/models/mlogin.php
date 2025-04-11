@@ -8,11 +8,12 @@ class MLogin extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('usuario_m');
 	}
 
 	
 
-	public function Ingresar($usu, $pass)
+	public function Ingresar($usu, $pass,$fecha)
 	{
 		$this->db->select('*');
 		$this->db->from('table_usuario');
@@ -33,7 +34,11 @@ class MLogin extends CI_Model
 					'id_usuario' => $dato->id_usuario,
 					'nombre_usuario'=>$dato->nombre_usuario
 				);
-				$this->session->set_userdata($s_usuario);			
+				$this->session->set_userdata($s_usuario);	
+				$this->usuario_m->Upd(array(					
+					'id_usuario' => $dato->id_usuario,
+					'fecha_ult_conex'=>$fecha
+				));		
 				return 1;
 			}
 		} else{
