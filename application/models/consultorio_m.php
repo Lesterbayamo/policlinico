@@ -19,6 +19,8 @@ class consultorio_m extends Main_Model
 		$this->db->join('table_grupo_trabajo','table_grupo_trabajo.id_grupo_trabajo = table_consultorio_medico.Table_GRUPO_TRABAJO_id_grupo_trabajo');
 		if($id){$this->db->where($this->tabla_id,$id);}
 		if($gt){$this->db->where('Table_GRUPO_TRABAJO_id_grupo_trabajo',$gt);}
+		$this->db->order_by('Nombre_gt','ASC');
+		$this->db->order_by('Nombre_cm','ASC');
 		$s = $this->db->get();		
 		return $s->result();
 		
