@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-2">
                 <ol class="breadcrumb float-sm-right">
-                    
+
 
                 </ol>
             </div>
@@ -32,39 +32,41 @@
                         <spam id="titulo_exportar">Reporte de las consultas en el consultorio</spam>
                     </div>
                     <!-- /.card-header -->
-                  
-                        <div class="form-group " style="margin-left: 15px;">
-                            <label>Intervalo de Fecha</label>
-                            <div class="input-group" style="width: auto;display: inline-flex;">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-dark"><i
-                                    class="fa fa-calendar"></i></span>
+                    <div class="card-body" style="padding: 0;padding-top: 15px;padding-left: 20px;">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label>Intervalo de Fecha</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-dark"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="daterange-btn" name="fecha"
+                                        value="<?=$valorFecha;?>" required>
                                 </div>
-                                <input type="text" class="form-control" id="daterange-btn" name="fecha"
-                                value="<?=$valorFecha;?>"
-                                required>
+                                <!-- /.input group -->
                             </div>
-                            <!-- /.input group -->
-                        </div>
-                     
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label>Consultorio</label>
-                            <div class="input-group col-2" style="margin-left: -5px;">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-dark"><i
-                                            class="fas fa-spell-check"></i></span>
+                            <div class="form-group col-4">
+                                <label>Consultorio</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-dark"><i class="fas fa-spell-check"></i></span>
+                                    </div>
+                                    <select class="select2" style="width: 89%" id="consultorio" name="consultorio"
+                                        required>
+                                        <option value="">--Select--</option>
+                                    </select>
                                 </div>
-                                <select class="select2" style="width: 75%" id="consultorio"
-                                    name="consultorio" required>
-                                    <option value="">--Select--</option>
-                                </select>
                             </div>
                         </div>
+                    </div>
+
+
+
                     <div class="card-body">
                         <table style="width: 100%" id="tb_labor" alin="center"
                             class="table table-bordered  table-hover table-condensed">
                             <thead>
-                                <tr>                                    
+                                <tr>
                                     <th style="width: 5%;">Especialidad</th>
                                     <!-- <th style="width: 5%;">Tipo de Consulta</th> -->
                                     <th style="width: 5%;">CMF</th>
@@ -72,8 +74,8 @@
                                     <?php foreach ($rango_edades as $key => $rango) {
                                         echo '<th style="width: 5%;">'.$rango->Rango_edad.'</th>';
                                     } ?>
-                                    <th style="width: 5%;">Total</th>   
-                                    
+                                    <th style="width: 5%;">Total</th>
+
                                 </tr>
 
                             </thead>
@@ -124,9 +126,4 @@
 <script type="text/javascript">
 var valorConsultorio = "<?=$valorConsultorio;?>";
 var nombreConsultorio = "<?=$nombreConsultorio[0]->Nombre_cm;?>";
-
 </script>
-
-
-
-
