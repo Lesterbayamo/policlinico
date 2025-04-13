@@ -12,7 +12,7 @@ class Main_Controller extends CI_Controller
     parent::__construct(); 
     ///$this->load->library("session");
     #$this->load->model('usuario_m');
-    #$this->load->model('reporte_m');
+    $this->load->model('reporte_m');
     #$this->load->model('trabajador_m');
     #$this->data_general['seccion_tiempo']= $this->TiempoDesconexion(); //return;
     #$this->data_general['cumpleannos_mes']= $this->CumpleannosEnMesActual(); //return;
@@ -27,6 +27,12 @@ public function hoy(){
   $gtm = time() -$this->Cambio_Horario();  
   $hoy = getdate($gtm);
 	return $hoy['year'] . "-" . $hoy['mon'] . "-" . $hoy['mday'] . " " . $hoy['hours'] . ":" . $hoy['minutes'] . ":" . $hoy['seconds'];
+}
+public function dia_hoy(){
+  date_default_timezone_set('GMT');
+  $gtm = time() -$this->Cambio_Horario();  
+  $hoy = getdate($gtm);
+	return $hoy['mday'];
 }
 public function fechaHoy($diff=0){
   date_default_timezone_set('GMT');
@@ -308,9 +314,27 @@ private function OrdenarPorDia($datos){
 public function Acceso_Denegado(){
       $this->Cargar_Plantilla('plantilla/error_404');
 }
+public function List_Cumplimiento_Notificaciones()
+	{		
+		$notificaciones = $this->reporte_m->List_Cumplimiento($this->Anno_Mes_Actual(),$this->fechaHoyMod());
+    $notificacion = array();		
+	   foreach ($notificaciones  as $key => $u) {
+		$h1['medico'] = $u->medico;	 			 
+		$h1['ci_medico'] = $u->ci_medico;	 			 
+		$h1['Nombre_esp'] = $u->Nombre_esp;	 			 
+		$h1['Cumplimiento'] =intval($u->Porciento_Cumplimiento);				 
+		$obj = (object) $h1;
+    if(($this->dia_hoy() <= 10 && $h1['Cumplimiento'] <= 30) ||($this->dia_hoy() > 10 && $this->dia_hoy() <= 20 && $h1['Cumplimiento'] <= 60)||($this->dia_hoy() > 20 && $h1['Cumplimiento'] < 100))
+		array_push($notificacion, $obj);
+	   }
+     return $notificacion;
+	}
 public function Cargar_Plantilla($dir='plantilla/error_403',$param=array()){
+  $datosNotificaciones['seccion_notificacion']=$this->List_Cumplimiento_Notificaciones();
+  if(count($datosNotificaciones['seccion_notificacion']))
+  $this->mensaje('info','Médicos con % de cumplimiento bajos para la fecha actual: ('.count($datosNotificaciones['seccion_notificacion']).')');
   $this->load->view('plantilla/header');
-	$this->load->view('plantilla/menu');
+	$this->load->view('plantilla/menu',$datosNotificaciones);
 	#$this->load->view('plantilla/menutop',$this->data_general);			
 	$this->load->view($dir,$param);
 	$this->load->view('plantilla/footer');

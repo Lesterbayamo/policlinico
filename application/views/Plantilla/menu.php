@@ -57,7 +57,7 @@
               <nav id="mainav" class="fl_right">
 
                   <ul class="clear" style="width: 1100px;">
-                      <li class="<?php echo ($this->uri->segment(1)=='Inicio')?'active':'';?>"> <a class="nav-link" href="<?php echo base_url();?>Inicio">Inicio</a> </li>
+                      <li class="<?php echo ($this->uri->segment(1)=='Inicio')?'active':'';?>"> <a class="nav-link" href="<?php echo base_url();?>Inicio"><i class="fa fa-home"></i></a> </li>
 
 
                       <li class="<?php echo ($this->uri->segment(1)=='Labor_Medico')?'active':'';?>"><a class="drop" href="#">Labor del Médico</a>
@@ -107,6 +107,7 @@
                               <li class="<?php echo ($this->uri->segment(1)=='Usuario')?'active':'';?>"><a href="<?php echo base_url();?>Usuario">Usuario</a></li>
                           </ul>
                       </li>
+                      <?php include_once(APPPATH . 'views/Plantilla/notificaciones.php');?>
 
                   </ul>
 
