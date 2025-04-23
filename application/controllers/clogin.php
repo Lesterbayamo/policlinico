@@ -35,12 +35,10 @@ class CLogin extends Main_Controller
 	public function Ingresar()
 	{
 		$usu = $this->input->post('xUsuario');
-		$pass = md5($this->input->post('xPassword'));
-		
-		$res = $this->mlogin->Ingresar($usu, $pass,$this->hoy());
-       # var_dump($res);return;
+		$pass = md5($this->input->post('xPassword'));		
+		$res = $this->mlogin->Ingresar($usu, $pass,$this->hoy());      
 		if($res == 1)
-		{			
+		{
 			redirect(base_url().'Inicio');				
 		}
 		else{
@@ -57,23 +55,7 @@ class CLogin extends Main_Controller
 
 	public function CargarPortada()
 	{
-		#$retVal = ($this->session->userdata('rol')) ? true : false ;
 		($this->ControlConexion()) ? $this->Cargar_Plantilla('vportada') :redirect(base_url().'Autenticacion/0');
-		
 	}
-    /* public function Grafo_Neto_Mes_Campanna()
-	{   
-		$this->load->model('mreporte');
-		$id = $this->input->get('id');				
-	    echo json_encode($this->mreporte->Grafo_Neto_Mes_Campanna($id));
-	}
-	public function Campanna_Actual()
-	{   $this->load->model('mreporte');
-		echo json_encode($this->mreporte->Campanna_Actual());		
-	}
-	public function Campanna_Area_Contratada()
-	{   $this->load->model('mreporte');
-		$id = $this->input->get('id');	
-		echo json_encode($this->mreporte->Campanna_Area_Contratada($id));		
-	} */
+    
 }

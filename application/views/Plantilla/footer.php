@@ -164,6 +164,7 @@ var nivel_acceso = "<?php echo $this->session->userdata('rol');?>";
 <script type="text/javascript">
 $(function() {
     $['data-toggle = "tooltip"'].tooltip();
+    
 })
 </script>
 <?php if($this->uri->segment(1)=='Inicio') {?>
@@ -202,6 +203,7 @@ $(function() {
 <?php if($this->uri->segment(1)=='Relacionar-grupo-de-edad-con-especialidad') {?>
 <script src="<?= base_url();?>js/ge_esp.js"></script>
 <?php }?>
+<script src="<?= base_url();?>js/notificaciones.js"></script>
 
 
 
@@ -217,11 +219,15 @@ toastr.info("<?php echo $this->session->flashdata('info'); ?>");
 <?php } ?>
 </script>
 
-
+<script type="text/javascript">
+var info = <?=$tabla_value;?>;
+</script>
 <!-- Page specific script -->
 <script>
 $(function() {
+   
     //Initialize Select2 Elements
+    $('#tb_notif').scroll(0,1000)
     $('.select2').select2()
 
     //Initialize Select2 Elements

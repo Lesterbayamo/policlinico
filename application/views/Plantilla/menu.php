@@ -68,21 +68,21 @@
                               </li>
                           </ul>
                       </li>
-                      <li class="<?php echo ($this->uri->segment(1)=='Medico')?'active':'';?>"><a class="drop" href="#">Médicos</a>
-                          <ul>
+                      <li class="<?php echo ($this->uri->segment(1)=='Medico')?'active':'';?>"><a class="" href="<?php echo base_url();?>Medico">Médicos</a>
+                          <!-- <ul>
                               <li class="<?php echo ($this->uri->segment(1)=='Medico')?'active':'';?>"><a href="<?php echo base_url();?>Medico">Médicos</a></li>
-                          </ul>
+                          </ul> -->
                       </li>
-                      <li class="<?php echo ($this->uri->segment(1)=='Especialidades')?'active':'';?>"><a class="drop" href="#">Especialidades</a>
-                          <ul>
+                      <li class="<?php echo ($this->uri->segment(1)=='Especialidades')?'active':'';?>"><a class="" href="<?php echo base_url();?>Especialidades">Especialidades</a>
+                          <!-- <ul>
                               <li class="<?php echo ($this->uri->segment(1)=='Especialidades')?'active':'';?>"><a href="<?php echo base_url();?>Especialidades">Especialidades</a></li>
-                              <!--  <li><a   href="<?php echo base_url();?>Grupo_Edades">Grupos de Edades</a></li> -->
-                          </ul>
+                             
+                          </ul> -->
                       </li>
-                      <li class="<?php echo ($this->uri->segment(1)=='Grupo_Edades')?'active':'';?>"><a class="drop" href="#">Grupos de Edades</a>
-                          <ul>
+                      <li class="<?php echo ($this->uri->segment(1)=='Grupo_Edades')?'active':'';?>"><a class="" href="<?php echo base_url();?>Grupo_Edades">Grupos de Edades</a>
+                          <!-- <ul>
                               <li class="<?php echo ($this->uri->segment(1)=='Grupo_Edades')?'active':'';?>"><a href="<?php echo base_url();?>Grupo_Edades">Grupos de Edades</a></li>
-                          </ul>
+                          </ul> -->
                       </li>
                       <li class="<?php echo ($this->uri->segment(1)=='Consultorio' || $this->uri->segment(1)=='Grupo_Trabajo')?'active':'';?>"><a class="drop" href="#">Consultorios</a>
                           <ul>

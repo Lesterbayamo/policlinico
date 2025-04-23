@@ -327,17 +327,36 @@ public function List_Cumplimiento_Notificaciones()
     if(($this->dia_hoy() <= 10 && $h1['Cumplimiento'] <= 30) ||($this->dia_hoy() > 10 && $this->dia_hoy() <= 20 && $h1['Cumplimiento'] <= 60)||($this->dia_hoy() > 20 && $h1['Cumplimiento'] < 100))
 		array_push($notificacion, $obj);
 	   }
+     echo json_encode($notificacion);
+    
+	}
+  public function List_Cumplimiento_Notificaciones1()
+	{		
+		$notificaciones = $this->reporte_m->List_Cumplimiento($this->Anno_Mes_Actual(),$this->fechaHoyMod());
+    $notificacion = array();		
+	   foreach ($notificaciones  as $key => $u) {
+		$h1['medico'] = $u->medico;	 			 
+		$h1['ci_medico'] = $u->ci_medico;	 			 
+		$h1['Nombre_esp'] = $u->Nombre_esp;	 			 
+		$h1['Cumplimiento'] =intval($u->Porciento_Cumplimiento);				 
+		$obj = (object) $h1;
+    if(($this->dia_hoy() <= 10 && $h1['Cumplimiento'] <= 30) ||($this->dia_hoy() > 10 && $this->dia_hoy() <= 20 && $h1['Cumplimiento'] <= 60)||($this->dia_hoy() > 20 && $h1['Cumplimiento'] < 100))
+		array_push($notificacion, $obj);
+	   }
+     
      return $notificacion;
 	}
 public function Cargar_Plantilla($dir='plantilla/error_403',$param=array()){
-  $datosNotificaciones['seccion_notificacion']=$this->List_Cumplimiento_Notificaciones();
-  if(count($datosNotificaciones['seccion_notificacion']))
-  $this->mensaje('info','Médicos con % de cumplimiento bajos para la fecha actual: ('.count($datosNotificaciones['seccion_notificacion']).')');
+  $datosNotificaciones['seccion_notificacion']=$this->List_Cumplimiento_Notificaciones1();
+  $this->data['tabla_value']= json_encode($datosNotificaciones['seccion_notificacion']); //return;			
+  		
+  #if(count($datosNotificaciones['seccion_notificacion']))
+  #$this->mensaje('info','Médicos con % de cumplimiento bajos para la fecha actual: ('.count($datosNotificaciones['seccion_notificacion']).')');
   $this->load->view('plantilla/header');
 	$this->load->view('plantilla/menu',$datosNotificaciones);
 	#$this->load->view('plantilla/menutop',$this->data_general);			
 	$this->load->view($dir,$param);
-	$this->load->view('plantilla/footer');
+	$this->load->view('plantilla/footer',$this->data);
 }
 public function Redirect(){
   ($this->data_general['_redirect']) ? redirect(base_url().$this->data_general['_redirect']) : $this->Cargar_Plantilla();  
@@ -349,7 +368,7 @@ public function Cambio_Horario(){
   $anno = date('Y',$fecha);
   $primerDomingoMayo = strtotime("first sunday of May $anno");
   $primerDomingoNoviembre = strtotime("first sunday of November $anno");
-  ($fecha >= $primerDomingoMayo && $fecha<=$primerDomingoNoviembre) ? $gtm = 4: $gtm=5;
+  ($time >= $primerDomingoMayo && $time<=$primerDomingoNoviembre) ? $gtm = 5: $gtm=4;
   return 60*60*$gtm;
 }
 public function No_Tiene_Permiso(){
